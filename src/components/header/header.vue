@@ -52,7 +52,7 @@ export default {
 </script>
 <style scoped>
 .nav {
-  width: 1920px;
+  width: 100%;
   height: 100px;
   background-color: #ffffff;
   display: flex;
@@ -61,6 +61,7 @@ export default {
 }
 .navimg_left {
   width: 240px;
+  min-width: 240px;
   height: 49px;
   margin-left: 85px;
 }

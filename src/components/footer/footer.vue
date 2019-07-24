@@ -125,7 +125,7 @@ export default {
   margin: 13px;
 }
 .heng {
-  width: 1920px;
+  width: 100%;
   height: 1px;
   background-color: #ffffff;
   box-shadow: 0px 1px 0px 0px #000000;

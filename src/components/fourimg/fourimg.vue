@@ -43,6 +43,7 @@ export default {
   max-width: 1920px;
   min-width: 1200px;
   max-height: 45vw;
+  min-height: 548px;
   height: 868px;
 }
 .OURSERVICE {
@@ -72,22 +73,30 @@ export default {
 }
 .imgcontent {
   width: 91vw;
+  min-width: 1200px;
   height: 30vw;
   display: flex;
   justify-content: space-between;
   margin: 3vw auto 0 auto;
 }
 .imgitem {
+  /* width: 21vw; */
+  min-width: 276px;
+  /* height: 28vw; */
+  min-height: 370px;
   text-align: center;
 }
 .item {
   width: 21vw;
+  min-width: 276px;
   height: 28vw;
+  min-height: 370px;
   background-color: #b81b22;
 }
 .item img {
   width: 100%;
   height: 27vw;
+  min-height: 358px;
 }
 .imgitem p {
   font-family: MicrosoftYaHei;
