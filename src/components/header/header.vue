@@ -20,13 +20,13 @@
                 <router-link to="/investment">
                   <li>影视节目投资</li>
                 </router-link>
-                <router-link to="/marketing">
+                <router-link to="/investment">
                   <li>短视频内容营销</li>
                 </router-link>
-                <router-link to="/delivery">
+                <router-link to="/investment">
                   <li>华为移动媒体投放</li>
                 </router-link>
-                <router-link to="/media">
+                <router-link to="/investment">
                   <li>交通出行媒体</li>
                 </router-link>
               </ul>
