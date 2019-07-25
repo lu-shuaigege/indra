@@ -2,7 +2,7 @@
   <!-- 关于英铎 -->
   <div class="about">
     <!-- 上面背景图片 -->
-    <div class="top"></div>
+    <Topbg></Topbg>
     <!-- 关于英铎简介 -->
     <Aboutindra></Aboutindra>
     <!-- 专业团队 -->
@@ -130,6 +130,7 @@
 </template>
 <script>
 import Aboutindra from "@/components/aboutindra/aboutindra.vue";
+import Topbg from "@/components/topbg/topbg.vue";
 export default {
   data() {
     return {
@@ -137,7 +138,8 @@ export default {
     };
   },
   components: {
-    Aboutindra
+    Aboutindra,
+    Topbg
   }
 };
 </script>

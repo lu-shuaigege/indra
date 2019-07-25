@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import home from '@/views/home/home.vue'
-import about from '@/views/about/about.vue'
+// import home from '@/views/home/home.vue'
+// import about from '@/views/about/about.vue'
 
 Vue.use(Router)
 export const contentsRouter = [{
@@ -23,6 +23,38 @@ export const contentsRouter = [{
     title: '关于我们'
   },
   component: () => import('../views/about/about.vue')
+},
+{
+  path: '/business',
+  name: 'business',
+  meta: {
+    title: '业务介绍'
+  },
+  component: () => import('../views/business/business.vue')
+},
+{
+  path: '/investment',
+  name: 'investment',
+  meta: {
+    title: '业务介绍-影视节目投资'
+  },
+  component: () => import('../views/investment/investment.vue')
+},
+{
+  path: '/success',
+  name: 'success',
+  meta: {
+    title: '成功案例'
+  },
+  component: () => import('../views/success/success.vue')
+},
+{
+  path: '/contactus',
+  name: 'contactus',
+  meta: {
+    title: '联系我们'
+  },
+  component: () => import('../views/contactus/contactus.vue')
 },
 ]
 export default new Router({

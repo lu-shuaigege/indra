@@ -2,7 +2,7 @@
   <!-- 首页 -->
   <div class="home">
     <!-- 轮播图 -->
-    <el-carousel arrow="never" height="867px" width="100%">
+    <el-carousel class="banner" arrow="never" height="867px" width="100%">
       <el-carousel-item v-for="(item,index) in imgs" :key="index">
         <img :src="item.url" style="width:100%;height:100%" alt />
       </el-carousel-item>
@@ -93,6 +93,9 @@ export default {
   padding: 1px;
   box-sizing: border-box;
 }
+.banner {
+  margin-bottom: 100px;
+}
 .casecontent {
   width: 100%;
   /* height: 1145px; */
@@ -144,6 +147,7 @@ export default {
 .imgitem:hover {
   box-shadow: 0vw 0vw 1vw 0vw rgba(51, 51, 51, 0.15);
   border-bottom: 2px solid #b81b22;
+  cursor: pointer;
 }
 .imgitem img {
   width: 29vw;

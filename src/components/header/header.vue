@@ -13,7 +13,7 @@
           <router-link to="/about">
             <li>关于英铎</li>
           </router-link>
-          <router-link to>
+          <router-link to="/business">
             <li class="yewu">
               业务介绍
               <ul class="list">
@@ -46,7 +46,9 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      active: true
+    };
   }
 };
 </script>

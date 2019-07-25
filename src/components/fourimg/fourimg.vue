@@ -57,7 +57,7 @@ export default {
   letter-spacing: 0px;
   color: #b81b22;
   opacity: 0.2;
-  margin: 5vw auto 0 auto;
+  margin: 0 auto;
 }
 .fourimg_title {
   width: 120px;
