@@ -27,69 +27,69 @@ import pagination from "../../components/pagination/pagination.vue";
 export default {
   data() {
     return {
-      total: 20, // 记录总条数
+      total: 200, // 记录总条数
       display: 12, // 每页显示条数
       current: 1, // 当前的页数
       category: 1, //一级分类
       page: 1, //页码
       imglist: [
         {
-          url: require("../../assets/imgs/home/case1.png"),
+          url: require("../../assets/imgs/home/case1.jpg"),
           title: "上城区千年之约项目访谈",
           text: "短视频内容营销"
         },
         {
-          url: require("../../assets/imgs/home/case2.png"),
+          url: require("../../assets/imgs/home/case2.jpg"),
           title: "【虎妈猫爸】影视剧项目投资",
           text: "影视节目投资"
         },
         {
-          url: require("../../assets/imgs/home/case3.png"),
+          url: require("../../assets/imgs/home/case3.jpg"),
           title: "【我的前半生】影视剧项目投资",
           text: "影视节目投资"
         },
         {
-          url: require("../../assets/imgs/home/case4.png"),
+          url: require("../../assets/imgs/home/case4.jpg"),
           title: "【真心话大冒险】综艺节目投资",
           text: "短视频内容营销"
         },
         {
-          url: require("../../assets/imgs/home/case5.png"),
+          url: require("../../assets/imgs/home/case5.jpg"),
           title: "曼秀雷敦【旋风少女】影视广告植入",
           text: "华为移动媒体投放"
         },
         {
-          url: require("../../assets/imgs/home/case6.png"),
+          url: require("../../assets/imgs/home/case6.jpg"),
           title: "毛铺酒&良品铺子&自嗨锅【少年派】影视广告植入",
           text: "交通出行媒体"
         },
         {
-          url: require("../../assets/imgs/home/case1.png"),
+          url: require("../../assets/imgs/home/case1.jpg"),
           title: "上城区千年之约项目访谈",
           text: "短视频内容营销"
         },
         {
-          url: require("../../assets/imgs/home/case2.png"),
+          url: require("../../assets/imgs/home/case2.jpg"),
           title: "【虎妈猫爸】影视剧项目投资",
           text: "影视节目投资"
         },
         {
-          url: require("../../assets/imgs/home/case3.png"),
+          url: require("../../assets/imgs/home/case3.jpg"),
           title: "【我的前半生】影视剧项目投资",
           text: "影视节目投资"
         },
         {
-          url: require("../../assets/imgs/home/case4.png"),
+          url: require("../../assets/imgs/home/case4.jpg"),
           title: "【真心话大冒险】综艺节目投资",
           text: "短视频内容营销"
         },
         {
-          url: require("../../assets/imgs/home/case5.png"),
+          url: require("../../assets/imgs/home/case5.jpg"),
           title: "曼秀雷敦【旋风少女】影视广告植入",
           text: "华为移动媒体投放"
         },
         {
-          url: require("../../assets/imgs/home/case6.png"),
+          url: require("../../assets/imgs/home/case6.jpg"),
           title: "毛铺酒&良品铺子&自嗨锅【少年派】影视广告植入",
           text: "交通出行媒体"
         }
@@ -211,5 +211,8 @@ export default {
   letter-spacing: 0px;
   color: #999999;
   margin: 0.3vw 0 0 1vw;
+}
+.yema {
+  margin-bottom: 170px;
 }
 </style>

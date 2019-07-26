@@ -28,7 +28,6 @@ import Topbg from "@/components/topbg/topbg.vue";
 export default {
   data() {
     return {
-      istrue: true,
       tablist: [
         { name: "影视节目投资" },
         { name: "短视频内容营销" },
@@ -41,11 +40,25 @@ export default {
   components: {
     Topbg
   },
+  created() {
+    // 接收路由跳转Params里面传过来的参数
+    // this.active = this.$route.params.business_id;
+
+    //从sessionStorage把页面要用的参数取出来
+    this.active = sessionStorage.getItem("business_id");
+  },
+  watch: {
+    "$store.state.item_id": function() {
+      //你需要执行的代码
+      this.active = this.$store.state.item_id;
+    }
+  },
   methods: {
     //点击一级分类向后台获取不同的数据
     nav: function(index) {
       //把页面要传的参数存到sessionStorage里面
       this.active = index;
+      console.log(this.active);
     }
   }
 };

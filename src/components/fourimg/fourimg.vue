@@ -4,10 +4,12 @@
     <div class="fourimg_title">我们的业务</div>
     <div class="imgcontent">
       <div class="imgitem" v-for="(item,index) in fourimg" :key="index">
-        <div class="item">
+        <!-- <router-link to="/business"> -->
+        <div class="item" @click="xiang(item.id)">
           <img :src="item.url" alt />
         </div>
         <p>{{item.text}}</p>
+        <!-- </router-link> -->
       </div>
     </div>
   </div>
@@ -16,25 +18,44 @@
 export default {
   data() {
     return {
+      business_id: 0,
       fourimg: [
         {
-          url: require("../../assets/imgs/home/business1.png"),
-          text: "影视节目投资"
+          url: require("../../assets/imgs/home/business1.jpg"),
+          text: "影视节目投资",
+          id: 0
         },
         {
-          url: require("../../assets/imgs/home/business2.png"),
-          text: "影视节目投资"
+          url: require("../../assets/imgs/home/business2.jpg"),
+          text: "短视频内容营销",
+          id: 1
         },
         {
-          url: require("../../assets/imgs/home/business3.png"),
-          text: "影视节目投资"
+          url: require("../../assets/imgs/home/business3.jpg"),
+          text: "华为移动媒体投放",
+          id: 2
         },
         {
-          url: require("../../assets/imgs/home/business4.png"),
-          text: "影视节目投资"
+          url: require("../../assets/imgs/home/business4.jpg"),
+          text: "交通出行媒体",
+          id: 3
         }
       ]
     };
+  },
+  methods: {
+    xiang(row) {
+      this.business_id = row;
+      //把页面要传的参数存到sessionStorage里面
+      sessionStorage.setItem("business_id", this.business_id);
+      //   console.log(row); //此时就能拿到整行的信息
+      this.$router.push({
+        name: "investment",
+        params: {
+          business_id: this.id
+        }
+      });
+    }
   }
 };
 </script>

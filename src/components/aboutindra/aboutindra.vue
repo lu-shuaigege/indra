@@ -35,7 +35,7 @@ export default {
   max-width: 1920px;
   min-width: 100%;
   min-height: 860px;
-  background: url("../../assets/imgs/home/indrabg.png") no-repeat;
+  background: url("../../assets/imgs/home/indrabg.jpg") no-repeat;
   background-position: center;
 }
 .word {
@@ -82,7 +82,7 @@ export default {
 .content {
   margin-top: 50px;
 }
-.content h4{
+.content h4 {
   margin-bottom: 20px;
 }
 .content p {

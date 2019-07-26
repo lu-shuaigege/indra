@@ -13,7 +13,7 @@ export default {
 .top {
   width: 100%;
   height: 700px;
-  background: url("../../assets/imgs/about/inbanner.png") no-repeat;
+  background: url("../../assets/imgs/about/inbanner.jpg") no-repeat;
   background-position-x: center;
 }
 </style>

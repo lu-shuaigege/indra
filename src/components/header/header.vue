@@ -14,21 +14,16 @@
             <li>关于英铎</li>
           </router-link>
           <router-link to="/business">
-            <li class="yewu">
+            <li class="yewu" ref="yewu">
               业务介绍
-              <ul class="list">
-                <router-link to="/investment">
-                  <li>影视节目投资</li>
-                </router-link>
-                <router-link to="/investment">
-                  <li>短视频内容营销</li>
-                </router-link>
-                <router-link to="/investment">
-                  <li>华为移动媒体投放</li>
-                </router-link>
-                <router-link to="/investment">
-                  <li>交通出行媒体</li>
-                </router-link>
+              <ul class="list" ref="downlist">
+                <!-- <router-link to="/investment"> -->
+                <li
+                  v-for="(item,index) in business_list"
+                  :key="index"
+                  @click="xiang(item.id)"
+                >{{item.text}}</li>
+                <!-- </router-link> -->
               </ul>
             </li>
           </router-link>
@@ -47,12 +42,82 @@
 export default {
   data() {
     return {
-      active: true
+      business_id: 0,
+      business_list: [
+        {
+          text: "影视节目投资",
+          id: 0
+        },
+        {
+          text: "短视频内容营销",
+          id: 1
+        },
+        {
+          text: "华为移动媒体投放",
+          id: 2
+        },
+        {
+          text: "交通出行媒体",
+          id: 3
+        }
+      ]
     };
+  },
+  // watch: {
+  //   business_id(newValue, oldValue) {
+  //     console.log(oldValue);
+  //     console.log(newValue);
+  //     this.xiang(this.business_id);
+  //   }
+  // },
+  methods: {
+    name: function() {
+      this.$refs.yewu.onMouseOver(function() {
+          this.$refs.downlist.style.display = "inline-block";
+          console.log(11111111111)
+      });
+      this.$refs.downlist.onMouseOut(function() {
+        this.$refs.downlist.style.display = "none";
+      });
+    },
+    // stopBubble: function(e) {
+    //   console.log(e);
+    //   if (e && e.stopPropagation) {
+    //     //非IE
+    //     e.stopPropagation();
+    //   } else {
+    //     //IE
+    //     window.event.cancelBubble = true;
+    //   }
+    // },
+    //阻止浏览器的默认行为
+    stopDefault: function(e) {
+      //阻止默认浏览器动作(W3C)
+      if (e && e.preventDefault) e.preventDefault();
+      //IE中阻止函数器默认动作的方式
+      else window.event.returnValue = false;
+      // return false;
+    },
+    xiang(row) {
+      // window.event ? (window.event.cancelBubble = true) : e.stopPropagation();
+      // this.stopBubble();
+      this.stopDefault();
+      this.business_id = row;
+      this.$store.commit("item_id", this.business_id);
+      //把页面要传的参数存到sessionStorage里面
+      sessionStorage.setItem("business_id", this.business_id);
+      //路由跳转携带参数
+      this.$router.push({
+        name: "investment",
+        params: {
+          business_id: this.id
+        }
+      });
+    }
   }
 };
 </script>
-<style scoped>
+<style  scoped>
 .nav {
   width: 100%;
   height: 100px;
@@ -80,7 +145,7 @@ export default {
 .navcontent_right {
   width: 536px;
   height: 19px;
-  /* position: relative; */
+  position: relative;
 }
 .navcontent_right .navlist {
   display: flex;
@@ -101,19 +166,20 @@ export default {
   padding-bottom: 7px;
   border-bottom: 2px solid #b81b22;
 }
-.navcontent_right .navlist li:hover .list {
+/* .navcontent_right .navlist li:hover .list {
   display: inline-block;
-}
+} */
 .yewu {
   position: relative;
-  height: 50px;
+  /* height: 50px; */
 }
 .list {
   width: 160px;
   height: 243px;
   background-color: #ffffff;
+  /* margin-top: 60px; */
   position: absolute;
-  top: 60px;
+  top: 59px;
   left: -40px;
   box-sizing: border-box;
   overflow: hidden;

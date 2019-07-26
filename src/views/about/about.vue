@@ -140,6 +140,12 @@ export default {
   components: {
     Aboutindra,
     Topbg
+  },
+  //让页面滚动到顶部
+  mounted() {
+    this.$router.afterEach((to, from, next) => {
+      window.scrollTo(0, 0);
+    });
   }
 };
 </script>
@@ -150,7 +156,7 @@ export default {
 .top {
   width: 100%;
   height: 700px;
-  background: url("../../assets/imgs/about/inbanner.png") no-repeat;
+  background: url("../../assets/imgs/about/inbanner.jpg") no-repeat;
   background-position-x: center;
 }
 .major {
@@ -347,13 +353,13 @@ export default {
 .item1 div {
   width: 250px;
   height: 334px;
-  background: url("../../assets/imgs/about/people3.png");
+  background: url("../../assets/imgs/about/people3.jpg");
   margin-bottom: 21px;
 }
 .item2 div {
   width: 250px;
   height: 334px;
-  background: url("../../assets/imgs/about/people1.png");
+  background: url("../../assets/imgs/about/people1.jpg");
   margin-bottom: 21px;
 }
 .item div:hover .img_p {
@@ -414,13 +420,13 @@ export default {
 .item3 div {
   width: 250px;
   height: 334px;
-  background: url("../../assets/imgs/about/Eddie.png");
+  background: url("../../assets/imgs/about/Eddie.jpg");
   margin-bottom: 21px;
 }
 .item4 div {
   width: 250px;
   height: 334px;
-  background: url("../../assets/imgs/about/Poh.png");
+  background: url("../../assets/imgs/about/Poh.jpg");
   margin-bottom: 21px;
 }
 .bigimg {

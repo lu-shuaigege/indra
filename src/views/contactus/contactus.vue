@@ -10,7 +10,7 @@
         <br />以北京、上海、广州为市场运营服务中心
       </p>
       <div class="img">
-        <img src="../../assets/imgs/contactus/contactus2.png" alt />
+        <img src="../../assets/imgs/contactus/contactus2.jpg" alt />
       </div>
       <div class="address">
         <div class="address_content">

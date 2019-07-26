@@ -49,6 +49,14 @@ export const contentsRouter = [{
   component: () => import('../views/success/success.vue')
 },
 {
+  path: '/details',
+  name: 'details',
+  meta: {
+    title: '成功案例详情'
+  },
+  component: () => import('../views/details/details.vue')
+},
+{
   path: '/contactus',
   name: 'contactus',
   meta: {

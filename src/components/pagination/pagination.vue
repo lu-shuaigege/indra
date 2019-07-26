@@ -1,38 +1,21 @@
 <template>
   <nav>
     <ul class="pagination">
+      <!-- <li :class="{'disabled': current == 1}">
+        <a href="javascript:;" @click="setCurrent(1)">首页</a>
+      </li>-->
       <li :class="{'disabled': current == 1}">
-        <a
-          href="javascript:;"
-          @click="setCurrent(1)"
-        >首页</a>
+        <a href="javascript:;" @click="setCurrent(current - 1)" class="tab top">上一页</a>
       </li>
-      <li
-        v-for="(p,index) in grouplist"
-        :key="index"
-        :class="{'active': current == p.val}"
-      >
-        <a
-          href="javascript:;"
-          @click="setCurrent(p.val)"
-        >{{ p.text }}</a>
+      <li v-for="(p,index) in grouplist" :key="index" :class="{'active': current == p.val}">
+        <a href="javascript:;" @click="setCurrent(p.val)">{{ p.text }}</a>
       </li>
       <!-- <li :class="{'disabled': current == page}">
         <a href="javascript:;" @click="setCurrent(page)">尾页</a>
-      </li> -->
-      <li :class="{'disabled': current == 1}">
-        <a
-          href="javascript:;"
-          @click="setCurrent(current - 1)"
-          class="top"
-        >上一页</a>
-      </li>
+      </li>-->
+
       <li :class="{'disabled': current == page}">
-        <a
-          href="javascript:;"
-          @click="setCurrent(current + 1)"
-          class="down"
-        >下一页</a>
+        <a href="javascript:;" @click="setCurrent(current + 1)" class="tab down">下一页</a>
       </li>
     </ul>
   </nav>
@@ -129,36 +112,40 @@ export default {
   display: table;
   margin: 0 auto;
   /*width: 100%;*/
-  height: 50px;
+  height: 30px;
 
   li {
     float: left;
-    width: 65px;
-    height: 65px;
-    // border-radius: 5px;
-    border: 1px solid #dddddd;
-    margin: 0px 5px;
+    // width: 70px;
+    height: 30px;
     text-align: center;
-    line-height: 65px;
+    line-height: 30px;
     // color: #666;
-
-    & :hover {
-      background: #ffd050;
-
-      a {
-        color: #fff;
-      }
-    }
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin: 0 11px;
     a {
       display: block;
-      width: 65px;
-      height: 65px;
+      width: 50px;
+      height: 30px;
       text-align: center;
-      line-height: 65px;
-      font-size: 18px;
+      font-family: MicrosoftYaHei;
+      font-size: 14px;
+      font-weight: normal;
+      font-stretch: normal;
+      line-height: 30px;
+      letter-spacing: 0px;
+      color: #999999;
       // border-radius: 5px;
       text-decoration: none;
     }
+    & :hover {
+      background-color: #b81b22;
+    }
+    & :hover a {
+      color: #fff;
+    }
+
     .top:hover {
       background: #fff;
     }
@@ -167,11 +154,13 @@ export default {
     }
   }
   .active {
-    background: #ffd050;
-
+    background-color: #b81b22;
     a {
       color: #fff;
     }
   }
+}
+.tab {
+  margin: 0 14px;
 }
 </style>

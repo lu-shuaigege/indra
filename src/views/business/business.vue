@@ -9,14 +9,14 @@
       <p class="titlebg">OUR SERVICE</p>
       <p class="title">我们的业务</p>
       <div class="img1">
-        <img src="../../assets/imgs/business/business1.png" alt />
+        <img src="../../assets/imgs/business/business1.jpg" alt />
       </div>
       <div class="img2">
         <div class="img2_top">
-          <img src="../../assets/imgs/business/business2.png" alt />
+          <img src="../../assets/imgs/business/business2.jpg" alt />
         </div>
         <div class="img2_bottom">
-          <img src="../../assets/imgs/business/business3.png" alt />
+          <img src="../../assets/imgs/business/business3.jpg" alt />
         </div>
       </div>
     </div>
