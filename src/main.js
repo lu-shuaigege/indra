@@ -6,6 +6,8 @@ import router from './router'
 import store from './store'//引入store
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import Api from './api/index.js';
+Vue.prototype.$api = Api;
 
 
 Vue.use(ElementUI)

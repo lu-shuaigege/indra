@@ -8,7 +8,7 @@
             <p class="title">{{title}}</p>
             <p class="text">{{time}}</p>
           </div>
-          <a href="https://v.qq.com/x/cover/gj5uktlld388vmf/y052669szu7.html" target="_blank">
+          <a :href="url" target="_blank">
             <div class="top_right">
               <img src="../../assets/imgs/details/videobtn.png" alt />
             </div>
@@ -65,11 +65,41 @@ export default {
   data() {
     return {
       title: "KFC肯德基“四宝闹新春”",
-      time: "发布时间：2017-09-25"
+      time: "发布时间：2017-09-25",
+      content: "",
+      url: "https://v.qq.com/x/cover/gj5uktlld388vmf/y052669szu7.html"
     };
   },
   components: {
     Topbg
+  },
+  methods: {
+    //axios请求
+    pagination: function() {
+      //查询条件
+      //   var param = {
+      //     page: page,
+      //     pageSize: pageSize
+      //     //其它查询条件可在下面添加
+      //   };
+      this.$api.post(
+        "api_findGoodsList.do",
+        {
+          category: this.category,
+          page: this.page,
+          pageSize: 12
+        },
+        response => {
+          if (response.status >= 200 && response.status < 300) {
+            console.log(response.data); //请求成功，response为成功信息参数
+            this.content = response.data.result.list;
+            this.total = response.data.result.total;
+          } else {
+            console.log(response.message); //请求失败，response为失败信息
+          }
+        }
+      );
+    }
   }
 };
 </script>

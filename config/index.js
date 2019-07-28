@@ -10,7 +10,15 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: { //配置代理，解决vue使用axios访问node端口的跨域问题
+      '/api': {
+        target: 'http://192.168.1.105:80/lpd/', //这里是存放的是你要访问的后台地址
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      },
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -20,7 +28,7 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */

@@ -7,7 +7,12 @@
     <div class="case">
       <div class="casecontent">
         <div class="imgcontent">
-          <div class="imgitem" v-for="(caseitem,caseindex) in imglist" :key="caseindex">
+          <div
+            class="imgitem"
+            v-for="(caseitem,caseindex) in imglist"
+            :key="caseindex"
+            @click="details()"
+          >
             <img :src="caseitem.url" alt />
             <p class="imgitemtitle">{{caseitem.title}}</p>
             <p class="text">{{caseitem.text}}</p>
@@ -141,6 +146,17 @@ export default {
           }
         }
       );
+    },
+    details: function() {
+      //把页面要传的参数存到sessionStorage里面
+      // sessionStorage.setItem("business_id", this.business_id);
+      //路由跳转携带参数
+      this.$router.push({
+        name: "details",
+        params: {
+          // business_id: this.id
+        }
+      });
     }
   }
 };
