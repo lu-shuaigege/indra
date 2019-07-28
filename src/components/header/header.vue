@@ -14,9 +14,9 @@
             <li>关于英铎</li>
           </router-link>
           <router-link to="/business">
-            <li class="yewu" ref="yewu">
+            <li class="yewu" ref="yewu" @mouseover="mouseOver()">
               业务介绍
-              <ul class="list" ref="downlist">
+              <ul class="list" ref="downlist" @mouseout="mouseOut()" @click="none()">
                 <!-- <router-link to="/investment"> -->
                 <li
                   v-for="(item,index) in business_list"
@@ -42,6 +42,9 @@
 export default {
   data() {
     return {
+      //定义一下鼠标事件，否则会出现鼠标事件没有在原型链上定义的问题
+      mouseover: "",
+      mouseout: "",
       business_id: 0,
       business_list: [
         {
@@ -63,22 +66,26 @@ export default {
       ]
     };
   },
-  // watch: {
-  //   business_id(newValue, oldValue) {
-  //     console.log(oldValue);
-  //     console.log(newValue);
-  //     this.xiang(this.business_id);
-  //   }
-  // },
   methods: {
-    name: function() {
-      this.$refs.yewu.onMouseOver(function() {
-          this.$refs.downlist.style.display = "inline-block";
-          console.log(11111111111)
-      });
-      this.$refs.downlist.onMouseOut(function() {
-        this.$refs.downlist.style.display = "none";
-      });
+    // name: function() {
+    //   this.$refs.yewu.onMouseOver(function() {
+    //     this.$refs.downlist.style.display = "inline-block";
+    //     console.log(11111111111);
+    //   });
+    //   this.$refs.downlist.onMouseOut(function() {
+    //     this.$refs.downlist.style.display = "none";
+    //   });
+    // },
+    mouseOver: function() {
+      this.$refs.downlist.style.display = "inline-block";
+      // console.log(11111111111);
+    },
+    mouseOut: function() {
+      this.$refs.downlist.style.display = "none";
+      // console.log(22222222);
+    },
+    none:function(){
+      this.$refs.downlist.style.display = "none";
     },
     // stopBubble: function(e) {
     //   console.log(e);
@@ -99,6 +106,7 @@ export default {
       // return false;
     },
     xiang(row) {
+      // 组织浏览器的冒泡
       // window.event ? (window.event.cancelBubble = true) : e.stopPropagation();
       // this.stopBubble();
       this.stopDefault();
