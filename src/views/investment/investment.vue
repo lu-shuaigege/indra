@@ -14,10 +14,13 @@
       </ul>
       <div class="item_content">
         <div class="item_img">
-          <img v-show="active==0" src="../../assets/imgs/details/investment.png" alt />
-          <img v-show="active==1" src="../../assets/imgs/details/marketing.png" alt />
-          <img v-show="active==2" src="../../assets/imgs/details/delivery.png" alt />
-          <img v-show="active==3" src="../../assets/imgs/details/media.png" alt />
+          <img
+            v-for="(item,index) in data"
+            :key="index"
+            v-show="active==item.id-1"
+            :src="item.image"
+            alt
+          />
         </div>
       </div>
     </div>
@@ -25,6 +28,7 @@
 </template>
 <script>
 import Topbg from "@/components/topbg/topbg.vue";
+import { constants } from "fs";
 export default {
   data() {
     return {
@@ -34,6 +38,7 @@ export default {
         { name: "华为移动媒体投放" },
         { name: "交通出行媒体" }
       ],
+      data: [],
       active: 0
     };
   },
@@ -46,6 +51,7 @@ export default {
 
     //从sessionStorage把页面要用的参数取出来
     this.active = sessionStorage.getItem("business_id");
+    this.businesses();
   },
   watch: {
     "$store.state.item_id": function() {
@@ -59,6 +65,23 @@ export default {
       //把页面要传的参数存到sessionStorage里面
       this.active = index;
       console.log(this.active);
+    },
+    //axios请求
+    businesses: function() {
+      this.$api.get(
+        "businesses/" + this.active,
+        {
+          // id: this.active
+        },
+        response => {
+          if (response.status >= 200 && response.status < 300) {
+            console.log(response.data); //请求成功，response为成功信息参数
+            this.data = response.data.data.data;
+          } else {
+            console.log(response.message); //请求失败，response为失败信息
+          }
+        }
+      );
     }
   }
 };

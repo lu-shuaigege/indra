@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 let http = axios.create({
-  baseURL: 'http://localhost:8080/',
-  withCredentials: true,
+  baseURL: 'http://indra.dev.zhangxinkeji.com/api/',
+  withCredentials: false,
   headers: {
-    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
   },
   transformRequest: [function (data) {
     let newData = '';

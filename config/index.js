@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: { //配置代理，解决vue使用axios访问node端口的跨域问题
       '/api': {
-        target: 'http://192.168.1.105:80/lpd/', //这里是存放的是你要访问的后台地址
+        target: 'http://indra.dev.zhangxinkeji.com/api/', //这里是存放的是你要访问的后台地址
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
@@ -21,7 +21,7 @@ module.exports = {
     },
 
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
+    host: '192.168.0.183', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,

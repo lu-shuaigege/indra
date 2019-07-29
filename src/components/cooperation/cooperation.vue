@@ -42,6 +42,30 @@ export default {
         { url: require("../../assets/imgs/home/logo21.png") }
       ]
     };
+  },
+  created() {
+    //从sessionStorage把页面要用的参数取出来
+    this.casesid = sessionStorage.getItem("casesid");
+    this.partners();
+  },
+  methods: {
+    //axios请求
+    partners: function() {
+      this.$api.get(
+        "partners",
+        {
+          // id: this.casesid
+        },
+        response => {
+          if (response.status >= 200 && response.status < 300) {
+            console.log(response.data); //请求成功，response为成功信息参数
+            // this.title = response.data.data.title;
+          } else {
+            console.log(response.message); //请求失败，response为失败信息
+          }
+        }
+      );
+    }
   }
 };
 </script>

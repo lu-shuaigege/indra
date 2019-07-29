@@ -146,6 +146,35 @@ export default {
     this.$router.afterEach((to, from, next) => {
       window.scrollTo(0, 0);
     });
+  },
+  created() {
+    this.histories();
+  },
+  methods: {
+    //axios请求
+    histories: function() {
+      //查询条件
+      //   var param = {
+      //     page: page,
+      //     pageSize: pageSize
+      //     //其它查询条件可在下面添加
+      //   };
+      this.$api.get(
+        "histories",
+        {
+          page: 1,
+          pageSize: 10
+        },
+        response => {
+          if (response.status >= 200 && response.status < 300) {
+            console.log(response.data); //请求成功，response为成功信息参数
+            this.imgs = response.data.data;
+          } else {
+            console.log(response.message); //请求失败，response为失败信息
+          }
+        }
+      );
+    }
   }
 };
 </script>

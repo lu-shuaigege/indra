@@ -4,7 +4,7 @@
     <!-- 轮播图 -->
     <el-carousel class="banner" arrow="never" height="867px" width="100%">
       <el-carousel-item v-for="(item,index) in imgs" :key="index">
-        <img :src="item.url" style="width:100%;height:100%" alt />
+        <img :src="item.image" style="width:100%;height:100%" alt />
       </el-carousel-item>
     </el-carousel>
     <!-- 四图 -->
@@ -36,13 +36,7 @@ import Cooperation from "@/components/cooperation/cooperation.vue";
 export default {
   data() {
     return {
-      imgs: [
-        { url: require("../../assets/imgs/home/banner.jpg") },
-        { url: require("../../assets/imgs/home/banner.jpg") },
-        { url: require("../../assets/imgs/home/banner.jpg") },
-        { url: require("../../assets/imgs/home/banner.jpg") },
-        { url: require("../../assets/imgs/home/banner.jpg") }
-      ],
+      imgs: [],
       caseimg: [
         {
           url: require("../../assets/imgs/home/case1.jpg"),
@@ -81,6 +75,35 @@ export default {
     Fourimg,
     Aboutindra,
     Cooperation
+  },
+  created() {
+    this.banner();
+  },
+  methods: {
+    //axios请求
+    banner: function() {
+      //查询条件
+      //   var param = {
+      //     page: page,
+      //     pageSize: pageSize
+      //     //其它查询条件可在下面添加
+      //   };
+      this.$api.get(
+        "banners/index",
+        {
+          page: 1,
+          pageSize: 10
+        },
+        response => {
+          if (response.status >= 200 && response.status < 300) {
+            console.log(response.data); //请求成功，response为成功信息参数
+            this.imgs = response.data.data;
+          } else {
+            console.log(response.message); //请求失败，response为失败信息
+          }
+        }
+      );
+    }
   }
 };
 </script>

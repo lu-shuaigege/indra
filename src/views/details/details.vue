@@ -6,7 +6,7 @@
         <div class="top">
           <div class="top_left">
             <p class="title">{{title}}</p>
-            <p class="text">{{time}}</p>
+            <p class="text">发布时间：{{time}}</p>
           </div>
           <a :href="url" target="_blank">
             <div class="top_right">
@@ -16,45 +16,7 @@
         </div>
         <hr class="hr" />
         <div class="red"></div>
-        <div class="word">
-          <img src="../../assets/imgs/details/videobtn.png" alt />
-          asdfasdfasdfasdfas sfg asfg fg adfg asfd SDF ADFG ASG ADFG
-          ASDFG ASG ASG ASG ASDG ASDG ASG ASG ASG AFDG ASDG ASG ASDG
-          ASG FGAGSDFG Aasdfasdfasdfasdfas sfg asfg fg adfg asfd SDF
-          ADFG ASG ADFG ASDFG ASG ASG ASG ASDG ASDG ASG ASG ASG AFDG
-          ASDG ASG ASDG ASG FGAGSDFG Aasdfasdfasdfasdfas sfg asfg fg a
-          dfg asfd SDF ADFG ASG ADFG ASDFG ASG ASG ASG ASDG ASDG ASG ASG
-          ASG AFDG ASDG ASG ASDG ASG FGAGSDFG Aasdfasdfasdfasdfas sfg asf
-          g fg adfg asfd SDF ADFG ASG ADFG ASDFG ASG ASG ASG ASDG ASDG ASG AS
-          G ASG AFDG ASDG ASG ASDG ASG FGAGSDFG Aasdfasdfasdfasdfas sfg asfg fg
-          adfg asfd SDF ADFG ASG ADFG ASDFG ASG ASG ASG ASDG ASDG A
-          SG ASG ASG AFDG ASDG ASG ASDG ASG FGAGSDFG Aasdfasdfasdfasdfas
-          sfg asfg fg adfg asfd SDF ADFG ASG ADFG ASDFG ASG ASG ASG ASDG ASD
-          G ASG ASG ASG AFDG ASDG ASG ASDG ASG FGAGSDFG Aasdfasdfasdfasdfas sfg a
-          sfg fg adfg asfd SDF ADFG ASG ADFG ASDFG ASG ASG ASG ASDG ASDG ASG ASG ASG
-          AFDG ASDG ASG ASDG ASG FGAGSDFG Aasdfasdfasdfasdfas sfg asfg fg adfg asfd S
-          DF ADFG ASG ADFG ASDFG ASG ASG ASG ASDG ASDG ASG ASG ASG AFDG ASDG ASG ASDG AS
-          G FGAGSDFG Aasdfasdfasdfasdfas sfg asfg fg adfg asfd SDF ADFG
-          ASG ADFG ASDFG ASG ASG ASG ASDG ASDG ASG ASG ASG AFDG ASDG ASG
-          ASDG ASG FGAGSDFG Aasdfasdfasdfasdfas sfg asfg fg adfg asfd SDF
-          ADFG ASG ADFG ASDFG ASG ASG ASG ASDG ASDG ASG ASG ASG AFDG A
-          SDG ASG ASDG ASG FGAGSDFG Aasdfasdfasdfasdfas sfg asfg fg adfg as
-          fd SDF ADFG ASG ADFG ASDFG ASG ASG ASG ASDG ASDG ASG ASG ASG AFDG ASD
-          G ASG ASDG ASG FGAGSDFG Aasdfasdfasdfasdfas sfg asfg fg adfg asfd SDF ADF
-          G ASG ADFG ASDFG ASG ASG ASG ASDG ASDG ASG ASG ASG AFDG ASDG ASG ASDG ASG
-          FGAGSDFG Aasdfasdfasdfasdfas sfg asfg fg adfg asfd SDF ADFG ASG AD
-          FG ASDFG ASG ASG ASG ASDG ASDG ASG ASG ASG AFDG ASDG ASG ASDG ASG FGAG
-          SDFG Aasdfasdfasdfasdfas sfg asfg fg adfg asfd SDF ADFG ASG ADFG ASDFG A
-          SG ASG ASG ASDG ASDG ASG ASG ASG AFDG ASDG ASG ASDG ASG FGAGSDFG Aasd
-          fasdfasdfasdfas sfg asfg fg adfg asfd SDF ADFG ASG ADFG ASDFG ASG ASG A
-          SG ASDG ASDG ASG ASG ASG AFDG ASDG ASG ASDG ASG FGAGSDFG Aasdfasdfasdfasdf
-          as sfg asfg fg adfg asfd SDF ADFG ASG ADFG ASDFG ASG ASG ASG ASDG ASDG
-          ASG ASG ASG AFDG ASDG ASG ASDG ASG FGAGSDFG Aasdfasdfasdfasdfas sf
-          g asfg fg adfg asfd SDF ADFG ASG ADFG ASDFG ASG ASG ASG ASDG ASDG ASG
-          ASG ASG AFDG ASDG ASG ASDG ASG FGAGSDFG Aasdfasdfasdfasdfas sfg asfg fg a
-          dfg asfd SDF ADFG ASG ADFG ASDFG ASG ASG ASG ASDG ASDG ASG ASG ASG AFDG A
-          SDG ASG ASDG ASG FGAGSDFG A
-        </div>
+        <div class="word">{{content}}</div>
       </div>
     </div>
   </div>
@@ -64,36 +26,36 @@ import Topbg from "@/components/topbg/topbg.vue";
 export default {
   data() {
     return {
-      title: "KFC肯德基“四宝闹新春”",
-      time: "发布时间：2017-09-25",
+      title: "",
+      time: "",
       content: "",
-      url: "https://v.qq.com/x/cover/gj5uktlld388vmf/y052669szu7.html"
+      url: "",
+      casesid: 0
     };
   },
   components: {
     Topbg
   },
+  created() {
+    //从sessionStorage把页面要用的参数取出来
+    this.casesid = sessionStorage.getItem("casesid");
+    this.cases();
+  },
   methods: {
     //axios请求
-    pagination: function() {
-      //查询条件
-      //   var param = {
-      //     page: page,
-      //     pageSize: pageSize
-      //     //其它查询条件可在下面添加
-      //   };
-      this.$api.post(
-        "api_findGoodsList.do",
+    cases: function() {
+      this.$api.get(
+        "cases/" + this.casesid,
         {
-          category: this.category,
-          page: this.page,
-          pageSize: 12
+          // id: this.casesid
         },
         response => {
           if (response.status >= 200 && response.status < 300) {
             console.log(response.data); //请求成功，response为成功信息参数
-            this.content = response.data.result.list;
-            this.total = response.data.result.total;
+            this.title = response.data.data.title;
+            this.time = response.data.data.published_at;
+            this.url = response.data.data.video;
+            this.url = response.data.data.content;
           } else {
             console.log(response.message); //请求失败，response为失败信息
           }
@@ -137,7 +99,7 @@ export default {
 }
 .text {
   width: 148px;
-  height: 14px;
+  height: 30px;
   font-family: MicrosoftYaHei;
   font-size: 14px;
   font-weight: normal;
@@ -145,6 +107,7 @@ export default {
   line-height: 36px;
   letter-spacing: 0px;
   color: #999999;
+  overflow: hidden;
 }
 .hr {
   width: 100%;
