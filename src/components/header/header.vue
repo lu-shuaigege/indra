@@ -1,11 +1,11 @@
 <template>
   <!-- 导航 -->
-  <div class="nav">
+  <div class="nav" @mouseover="mouseOut()">
     <div class="navimg_left">
       <img src="@/assets/imgs/home/navlogo.png" alt />
     </div>
     <div class="navcontent">
-      <div class="navcontent_right">
+      <div class="navcontent_right" @mouseover="mouseOut()">
         <ul class="navlist">
           <router-link to="/home">
             <li>首页</li>
@@ -77,6 +77,7 @@ export default {
     //   });
     // },
     mouseOver: function() {
+      window.event ? (window.event.cancelBubble = true) : e.stopPropagation();
       this.$refs.downlist.style.display = "inline-block";
       // console.log(11111111111);
     },
@@ -84,7 +85,7 @@ export default {
       this.$refs.downlist.style.display = "none";
       // console.log(22222222);
     },
-    none:function(){
+    none: function() {
       this.$refs.downlist.style.display = "none";
     },
     // stopBubble: function(e) {
@@ -183,11 +184,11 @@ export default {
 }
 .list {
   width: 160px;
-  height: 243px;
+  height: 268px;
   background-color: #ffffff;
   /* margin-top: 60px; */
   position: absolute;
-  top: 59px;
+  top: 33px;
   left: -40px;
   box-sizing: border-box;
   overflow: hidden;
@@ -214,5 +215,8 @@ export default {
   display: inline-block;
   color: #b81b22;
   border-bottom: 1px solid rgba(225, 225, 225, 0.5) !important;
+}
+.list li:nth-child(1) {
+  margin-top: 26px;
 }
 </style>
