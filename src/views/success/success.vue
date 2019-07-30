@@ -2,7 +2,10 @@
   <!-- 成功案例 -->
   <div class="success">
     <!-- 上面背景图片 -->
-    <Topbg></Topbg>
+    <!-- <Topbg></Topbg> -->
+    <div class="top">
+      <img :src="bgimg" alt />
+    </div>
     <!-- 列表 -->
     <div class="case">
       <div class="casecontent">
@@ -13,9 +16,12 @@
             :key="caseindex"
             @click="details(caseitem.id)"
           >
-            <img :src="caseitem.cover_image" alt />
+            <div class="img">
+              <img :src="caseitem.cover_image" alt />
+            </div>
+
             <p class="imgitemtitle">{{caseitem.title}}</p>
-            <p class="text">{{caseitem.content}}</p>
+            <p class="text">{{caseitem.description}}</p>
           </div>
         </div>
       </div>
@@ -37,7 +43,8 @@ export default {
       current: 1, // 当前的页数
       category: 1, //一级分类
       page: 1, //页码
-      imglist: []
+      imglist: [],
+      bgimg: ""
     };
   },
   components: {
@@ -47,6 +54,7 @@ export default {
   },
   created() {
     this.caseslist();
+    this.topbg();
   },
   methods: {
     //分页组件向后台发送请求
@@ -65,12 +73,6 @@ export default {
     },
     //axios请求
     pagination: function() {
-      //查询条件
-      //   var param = {
-      //     page: page,
-      //     pageSize: pageSize
-      //     //其它查询条件可在下面添加
-      //   };
       this.$api.post(
         "api_findGoodsList.do",
         {
@@ -104,12 +106,6 @@ export default {
     },
     //axios请求
     caseslist: function() {
-      //查询条件
-      //   var param = {
-      //     page: page,
-      //     pageSize: pageSize
-      //     //其它查询条件可在下面添加
-      //   };
       this.$api.get(
         "cases",
         {
@@ -129,6 +125,24 @@ export default {
           }
         }
       );
+    },
+    //axios请求
+    topbg: function() {
+      this.$api.get(
+        "banners/cases",
+        {
+          page: 1,
+          pageSize: 10
+        },
+        response => {
+          if (response.status >= 200 && response.status < 300) {
+            console.log(response.data); //请求成功，response为成功信息参数
+            this.bgimg = response.data.data[0].image;
+          } else {
+            console.log(response.message); //请求失败，response为失败信息
+          }
+        }
+      );
     }
   }
 };
@@ -136,6 +150,15 @@ export default {
 <style scoped>
 .success {
   width: 100%;
+}
+.top {
+  width: 100%;
+  height: 700px;
+}
+.top img {
+  width: 100%;
+  /* height: 100%; */
+  max-height: 600px;
 }
 .case {
   width: 100%;
@@ -167,16 +190,39 @@ export default {
   background-color: #ffffff;
   box-sizing: border-box;
   margin-bottom: 50px;
+  overflow: hidden;
 }
 .imgitem:hover {
   box-shadow: 0vw 0vw 1vw 0vw rgba(51, 51, 51, 0.15);
-  border-bottom: 2px solid #b81b22;
+  border-bottom: 2px solid #d8362b;
+  background: #d8362b;
+  /* animation-duration: 2s;
+  animation-delay: 2s;
+  animation-iteration-count: infinite; */
 }
-.imgitem img {
+.imgitem:hover p {
+  color: #ffffff;
+}
+.imgitem:hover img {
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s; /* Safari */
+  cursor: pointer;
+  transform: scale(1.1);
+  -ms-transform: scale(1.1); /* IE 9 */
+  -moz-transform: scale(1.1); /* Firefox */
+  -webkit-transform: scale(1.1); /* Safari 和 Chrome */
+  -o-transform: scale(1.1);
+}
+.img {
   width: 29vw;
   min-width: 355px;
   height: 22vw;
   min-height: 269px;
+  overflow: hidden;
+}
+.img img {
+  width: 100%;
+  height: 100%;
 }
 .imgitem .imgitemtitle {
   height: 21px;
@@ -188,6 +234,11 @@ export default {
   letter-spacing: 0px;
   color: #222222;
   margin: 0.6vw 0 0 1vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 .imgitem .text {
   height: 15px;
@@ -199,6 +250,11 @@ export default {
   letter-spacing: 0px;
   color: #999999;
   margin: 0.3vw 0 0 1vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 .yema {
   margin-bottom: 170px;

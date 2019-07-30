@@ -22,7 +22,7 @@
                   v-for="(item,index) in business_list"
                   :key="index"
                   @click="xiang(item.id)"
-                >{{item.text}}</li>
+                >{{item.title}}</li>
                 <!-- </router-link> -->
               </ul>
             </li>
@@ -46,44 +46,19 @@ export default {
       mouseover: "",
       mouseout: "",
       business_id: 0,
-      business_list: [
-        {
-          text: "影视节目投资",
-          id: 0
-        },
-        {
-          text: "短视频内容营销",
-          id: 1
-        },
-        {
-          text: "华为移动媒体投放",
-          id: 2
-        },
-        {
-          text: "交通出行媒体",
-          id: 3
-        }
-      ]
+      business_list: []
     };
   },
+  created() {
+    this.toplist();
+  },
   methods: {
-    // name: function() {
-    //   this.$refs.yewu.onMouseOver(function() {
-    //     this.$refs.downlist.style.display = "inline-block";
-    //     console.log(11111111111);
-    //   });
-    //   this.$refs.downlist.onMouseOut(function() {
-    //     this.$refs.downlist.style.display = "none";
-    //   });
-    // },
     mouseOver: function() {
       window.event ? (window.event.cancelBubble = true) : e.stopPropagation();
       this.$refs.downlist.style.display = "inline-block";
-      // console.log(11111111111);
     },
     mouseOut: function() {
       this.$refs.downlist.style.display = "none";
-      // console.log(22222222);
     },
     none: function() {
       this.$refs.downlist.style.display = "none";
@@ -107,7 +82,7 @@ export default {
       // return false;
     },
     xiang(row) {
-      // 组织浏览器的冒泡
+      // 阻止浏览器的冒泡
       // window.event ? (window.event.cancelBubble = true) : e.stopPropagation();
       // this.stopBubble();
       this.stopDefault();
@@ -122,6 +97,24 @@ export default {
           business_id: this.id
         }
       });
+    },
+    //axios请求
+    toplist: function() {
+      this.$api.get(
+        "businesses",
+        {
+          page: 1,
+          pageSize: 10
+        },
+        response => {
+          if (response.status >= 200 && response.status < 300) {
+            console.log(response.data); //请求成功，response为成功信息参数
+            this.business_list = response.data.data;
+          } else {
+            console.log(response.message); //请求失败，response为失败信息
+          }
+        }
+      );
     }
   }
 };

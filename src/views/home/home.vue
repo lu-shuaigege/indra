@@ -2,7 +2,12 @@
   <!-- 首页 -->
   <div class="home">
     <!-- 轮播图 -->
-    <el-carousel class="banner" arrow="never" height="867px" width="100%">
+    <el-carousel
+      class="banner animated 1 bounce delay-1s"
+      arrow="never"
+      height="867px"
+      width="100%"
+    >
       <el-carousel-item v-for="(item,index) in imgs" :key="index">
         <img :src="item.image" style="width:100%;height:100%" alt />
       </el-carousel-item>
@@ -18,7 +23,10 @@
         <p class="title">成功案例</p>
         <div class="imgcontent">
           <div class="imgitem" v-for="(caseitem,caseindex) in caseimg" :key="caseindex">
-            <img :src="caseitem.url" alt />
+            <div class="img">
+              <img :src="caseitem.url" alt />
+            </div>
+
             <p class="imgitemtitle">{{caseitem.title}}</p>
             <p class="text">{{caseitem.text}}</p>
           </div>
@@ -169,14 +177,35 @@ export default {
 }
 .imgitem:hover {
   box-shadow: 0vw 0vw 1vw 0vw rgba(51, 51, 51, 0.15);
-  border-bottom: 2px solid #b81b22;
-  cursor: pointer;
+  border-bottom: 2px solid #d8362b;
+  background: #d8362b;
+  /* animation-duration: 2s;
+  animation-delay: 2s;
+  animation-iteration-count: infinite; */
 }
-.imgitem img {
+.imgitem:hover p {
+  color: #ffffff;
+}
+.imgitem:hover img {
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s; /* Safari */
+  cursor: pointer;
+  transform: scale(1.1);
+  -ms-transform: scale(1.1); /* IE 9 */
+  -moz-transform: scale(1.1); /* Firefox */
+  -webkit-transform: scale(1.1); /* Safari 和 Chrome */
+  -o-transform: scale(1.1);
+}
+.img {
   width: 29vw;
   min-width: 355px;
   height: 22vw;
   min-height: 269px;
+  overflow: hidden;
+}
+.img img {
+  width: 100%;
+  height: 100%;
 }
 .imgitem .imgitemtitle {
   height: 21px;

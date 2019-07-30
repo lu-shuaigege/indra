@@ -6,9 +6,10 @@
       <div class="imgitem" v-for="(item,index) in fourimg" :key="index">
         <!-- <router-link to="/business"> -->
         <div class="item" @click="xiang(item.id)">
-          <img :src="item.url" alt />
+          <div class="itemtop">+</div>
+          <img :src="item.image" alt />
         </div>
-        <p>{{item.text}}</p>
+        <p>{{item.title}}</p>
         <!-- </router-link> -->
       </div>
     </div>
@@ -21,27 +22,30 @@ export default {
       business_id: 0,
       fourimg: [
         {
-          url: require("../../assets/imgs/home/business1.jpg"),
-          text: "影视节目投资",
-          id: 0
+          image: require("../../assets/imgs/home/business4.jpg"),
+          id: 1,
+          title: "影视节目投资"
         },
         {
-          url: require("../../assets/imgs/home/business2.jpg"),
-          text: "短视频内容营销",
-          id: 1
+          image: require("../../assets/imgs/home/business1.jpg"),
+          id: 2,
+          title: "短视频营销"
         },
         {
-          url: require("../../assets/imgs/home/business3.jpg"),
-          text: "华为移动媒体投放",
-          id: 2
+          image: require("../../assets/imgs/home/business2.jpg"),
+          id: 3,
+          title: "华为移动媒体播放"
         },
         {
-          url: require("../../assets/imgs/home/business4.jpg"),
-          text: "交通出行媒体",
-          id: 3
+          image: require("../../assets/imgs/home/business3.jpg"),
+          id: 4,
+          title: "交通出行媒体"
         }
       ]
     };
+  },
+  created() {
+    // this.businesses();
   },
   methods: {
     xiang(row) {
@@ -52,9 +56,27 @@ export default {
       this.$router.push({
         name: "investment",
         params: {
-          business_id: this.id
+          business_id: this.business_id
         }
       });
+    },
+    //axios请求
+    businesses: function() {
+      this.$api.get(
+        "businesses",
+        {
+          page: 1,
+          pageSize: 10
+        },
+        response => {
+          if (response.status >= 200 && response.status < 300) {
+            console.log(response.data); //请求成功，response为成功信息参数
+            this.fourimg = response.data.data;
+          } else {
+            console.log(response.message); //请求失败，response为失败信息
+          }
+        }
+      );
     }
   }
 };
@@ -113,6 +135,36 @@ export default {
   height: 28vw;
   min-height: 370px;
   background-color: #b81b22;
+  position: relative;
+}
+.item:hover {
+  cursor: pointer;
+}
+
+.itemtop {
+  width: 21vw;
+  min-width: 276px;
+  height: 28vw;
+  min-height: 370px;
+  background: rgba(187, 24, 34, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  color: #fff;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 999;
+  opacity: 0;
+  /* visibility: hidden; */
+  transition: visibility 1s;
+  -moz-transition: visibility 1s;
+  -webkit-transition: visibility 1s;
+  -o-transition: visibility 1s;
+}
+.itemtop:hover {
+  opacity: 1;
 }
 .item img {
   width: 100%;

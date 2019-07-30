@@ -10,13 +10,14 @@
           </div>
           <a :href="url" target="_blank">
             <div class="top_right">
-              <img src="../../assets/imgs/details/videobtn.png" alt />
+              <img v-show="istrue" src="../../assets/imgs/details/videobtn.png" alt />
             </div>
           </a>
         </div>
+        <div class="contitle">{{description}}</div>
         <hr class="hr" />
-        <div class="red"></div>
-        <div class="word">{{content}}</div>
+        <!-- <div class="red"></div> -->
+        <div class="word" v-html="content"></div>
       </div>
     </div>
   </div>
@@ -30,7 +31,9 @@ export default {
       time: "",
       content: "",
       url: "",
-      casesid: 0
+      casesid: 0,
+      istrue: false,
+      description: ""
     };
   },
   components: {
@@ -40,6 +43,19 @@ export default {
     //从sessionStorage把页面要用的参数取出来
     this.casesid = sessionStorage.getItem("casesid");
     this.cases();
+  },
+  updated() {
+    // jquery方法修改
+    // $(".content")
+    //   .find("p")
+    //   .css("font-size", "20px")
+    //   .css("line-height", "35px")
+    //   .css("color", "#000000");
+    $(".word")
+      .find("img")
+      .css("width", "100%");
+    // // refs
+    // this.$refs.con.style.width = "1200px";
   },
   methods: {
     //axios请求
@@ -54,8 +70,15 @@ export default {
             console.log(response.data); //请求成功，response为成功信息参数
             this.title = response.data.data.title;
             this.time = response.data.data.published_at;
+            this.description = response.data.data.description;
+            if (
+              response.data.data.video != "" &&
+              response.data.data.video != null
+            ) {
+              this.istrue = true;
+            }
             this.url = response.data.data.video;
-            this.url = response.data.data.content;
+            this.content = response.data.data.content;
           } else {
             console.log(response.message); //请求失败，response为失败信息
           }
@@ -77,7 +100,7 @@ export default {
 }
 .top {
   width: 1200px;
-  height: 100px;
+  height: 50px;
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
@@ -87,7 +110,7 @@ export default {
   height: 50px;
 }
 .title {
-  width: 285px;
+  width: 800px;
   height: 24px;
   font-family: MicrosoftYaHei;
   font-size: 24px;
@@ -96,6 +119,11 @@ export default {
   line-height: 24px;
   letter-spacing: 0px;
   color: #222222;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 .text {
   width: 148px;
@@ -109,8 +137,18 @@ export default {
   color: #999999;
   overflow: hidden;
 }
+.contitle {
+  width: 800px;
+  margin: 10px 0 30px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
 .hr {
   width: 100%;
+  opacity: 0.6;
 }
 .red {
   width: 60px;
@@ -120,6 +158,6 @@ export default {
 }
 .word {
   width: 1200px;
-  margin: 0 auto 146px auto;
+  margin: 50px auto 146px auto;
 }
 </style>

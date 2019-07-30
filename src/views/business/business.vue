@@ -1,7 +1,11 @@
 <template>
   <!-- 首页 -->
   <div class="business">
-    <Topbg></Topbg>
+    <!-- 上面背景图片 -->
+    <!-- <Topbg></Topbg> -->
+    <div class="top">
+      <img :src="bgimg" alt />
+    </div>
     <!-- 四图 -->
     <Fourimg class="fourimg"></Fourimg>
     <!-- 我们的业务 -->
@@ -30,7 +34,7 @@ import Fourimg from "@/components/fourimg/fourimg.vue";
 import Cooperation from "@/components/cooperation/cooperation.vue";
 export default {
   data() {
-    return {};
+    return { bgimg: "" };
   },
   components: {
     Fourimg,
@@ -38,11 +42,12 @@ export default {
     Cooperation
   },
   created() {
-    this.banner();
+    this.businesses();
+    this.topbg();
   },
   methods: {
     //axios请求
-    banner: function() {
+    businesses: function() {
       //查询条件
       //   var param = {
       //     page: page,
@@ -64,6 +69,30 @@ export default {
           }
         }
       );
+    },
+    //axios请求
+    topbg: function() {
+      //查询条件
+      //   var param = {
+      //     page: page,
+      //     pageSize: pageSize
+      //     //其它查询条件可在下面添加
+      //   };
+      this.$api.get(
+        "banners/businesses",
+        {
+          page: 1,
+          pageSize: 10
+        },
+        response => {
+          if (response.status >= 200 && response.status < 300) {
+            console.log(response.data); //请求成功，response为成功信息参数
+            this.bgimg = response.data.data[0].image;
+          } else {
+            console.log(response.message); //请求失败，response为失败信息
+          }
+        }
+      );
     }
   }
 };
@@ -71,6 +100,15 @@ export default {
 <style scoped>
 .business {
   width: 100%；;
+}
+.top {
+  width: 100%;
+  height: 700px;
+}
+.top img {
+  width: 100%;
+  /* height: 100%; */
+  max-height: 600px;
 }
 .fourimg {
   height: 100%;

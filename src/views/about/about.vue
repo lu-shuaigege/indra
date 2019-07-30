@@ -2,7 +2,10 @@
   <!-- 关于英铎 -->
   <div class="about">
     <!-- 上面背景图片 -->
-    <Topbg></Topbg>
+    <!-- <Topbg></Topbg> -->
+    <div class="top">
+      <img :src="bgimg" alt />
+    </div>
     <!-- 关于英铎简介 -->
     <Aboutindra></Aboutindra>
     <!-- 专业团队 -->
@@ -122,7 +125,7 @@
       <p class="tiele">公司发展</p>
       <div class="bigimg">
         <div>
-          <img src="../../assets/imgs/home/logo1.png" alt />
+          <img :src="imgs" alt />
         </div>
       </div>
     </div>
@@ -134,7 +137,8 @@ import Topbg from "@/components/topbg/topbg.vue";
 export default {
   data() {
     return {
-      imgs: [{ url: require("../../assets/imgs/home/logo1.png") }]
+      imgs: "",
+      bgimg: ""
     };
   },
   components: {
@@ -149,6 +153,7 @@ export default {
   },
   created() {
     this.histories();
+    this.about();
   },
   methods: {
     //axios请求
@@ -168,7 +173,31 @@ export default {
         response => {
           if (response.status >= 200 && response.status < 300) {
             console.log(response.data); //请求成功，response为成功信息参数
-            this.imgs = response.data.data;
+            this.imgs = response.data.data.image;
+          } else {
+            console.log(response.message); //请求失败，response为失败信息
+          }
+        }
+      );
+    },
+    //axios请求
+    about: function() {
+      //查询条件
+      //   var param = {
+      //     page: page,
+      //     pageSize: pageSize
+      //     //其它查询条件可在下面添加
+      //   };
+      this.$api.get(
+        "banners/about-us",
+        {
+          page: 1,
+          pageSize: 10
+        },
+        response => {
+          if (response.status >= 200 && response.status < 300) {
+            console.log(response.data); //请求成功，response为成功信息参数
+            this.bgimg = response.data.data[0].image;
           } else {
             console.log(response.message); //请求失败，response为失败信息
           }
@@ -185,8 +214,11 @@ export default {
 .top {
   width: 100%;
   height: 700px;
-  background: url("../../assets/imgs/about/inbanner.jpg") no-repeat;
-  background-position-x: center;
+}
+.top img {
+  width: 100%;
+  /* height: 100%; */
+  max-height: 600px;
 }
 .major {
   width: 100%;

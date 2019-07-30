@@ -1,26 +1,24 @@
 <template>
-  <!-- 首页 -->
+  <!-- 合作详情 -->
   <div class="business">
-    <Topbg></Topbg>
+    <!-- 上面背景图片 -->
+    <!-- <Topbg></Topbg> -->
+    <div class="top">
+      <img :src="bgimg" alt />
+    </div>
     <div class="content">
       <ul class="tabitem">
         <li
           class
           v-for="(item,index) in tablist"
           :key="index"
-          @click="nav(index)"
-          :style="{background:index==active?'#b81b22':'#fff',color:index==active?'#fff':'#000000'}"
-        >{{item.name}}</li>
+          @click="nav(item.id)"
+          :style="{background:item.id==active?'#b81b22':'#fff',color:item.id==active?'#fff':'#000000'}"
+        >{{item.title}}</li>
       </ul>
       <div class="item_content">
         <div class="item_img">
-          <img
-            v-for="(item,index) in data"
-            :key="index"
-            v-show="active==item.id-1"
-            :src="item.image"
-            alt
-          />
+          <img :src="image" alt />
         </div>
       </div>
     </div>
@@ -29,17 +27,19 @@
 <script>
 import Topbg from "@/components/topbg/topbg.vue";
 import { constants } from "fs";
+import { connect } from "tls";
 export default {
   data() {
     return {
       tablist: [
-        { name: "影视节目投资" },
-        { name: "短视频内容营销" },
-        { name: "华为移动媒体投放" },
-        { name: "交通出行媒体" }
+        { id: 1, title: "影视节目投资" },
+        { id: 2, title: "短视频内容营销" },
+        { id: 3, title: "华为移动媒体投放" },
+        { id: 4, title: "交通出行媒体" }
       ],
-      data: [],
-      active: 0
+      image: "",
+      active: 0,
+      bgimg: ""
     };
   },
   components: {
@@ -51,23 +51,30 @@ export default {
 
     //从sessionStorage把页面要用的参数取出来
     this.active = sessionStorage.getItem("business_id");
-    this.businesses();
+    this.businessesid();
+    // this.businesses();
+    this.topbg();
   },
   watch: {
     "$store.state.item_id": function() {
       //你需要执行的代码
       this.active = this.$store.state.item_id;
+      console.log(this.active);
+      console.log(this.$store.state.item_id);
+      this.businessesid();
     }
   },
   methods: {
     //点击一级分类向后台获取不同的数据
     nav: function(index) {
       //把页面要传的参数存到sessionStorage里面
+      this.active = sessionStorage.setItem("business_id", index);
       this.active = index;
       console.log(this.active);
+      this.businessesid();
     },
     //axios请求
-    businesses: function() {
+    businessesid: function() {
       this.$api.get(
         "businesses/" + this.active,
         {
@@ -76,7 +83,49 @@ export default {
         response => {
           if (response.status >= 200 && response.status < 300) {
             console.log(response.data); //请求成功，response为成功信息参数
-            this.data = response.data.data.data;
+            this.image = response.data.data.image;
+          } else {
+            console.log(response.message); //请求失败，response为失败信息
+          }
+        }
+      );
+    },
+    //axios请求
+    businesses: function() {
+      this.$api.get(
+        "businesses",
+        {
+          page: 1,
+          pageSize: 10
+        },
+        response => {
+          if (response.status >= 200 && response.status < 300) {
+            console.log(response.data); //请求成功，response为成功信息参数
+            this.tablist = response.data.data;
+          } else {
+            console.log(response.message); //请求失败，response为失败信息
+          }
+        }
+      );
+    },
+    //axios请求
+    topbg: function() {
+      //查询条件
+      //   var param = {
+      //     page: page,
+      //     pageSize: pageSize
+      //     //其它查询条件可在下面添加
+      //   };
+      this.$api.get(
+        "banners/about-us",
+        {
+          page: 1,
+          pageSize: 10
+        },
+        response => {
+          if (response.status >= 200 && response.status < 300) {
+            console.log(response.data); //请求成功，response为成功信息参数
+            this.bgimg = response.data.data[0].image;
           } else {
             console.log(response.message); //请求失败，response为失败信息
           }
@@ -90,8 +139,18 @@ export default {
 .business {
   width: 100%;
 }
+
 .content {
   width: 100%;
+}
+.top {
+  width: 100%;
+  height: 700px;
+}
+.top img {
+  width: 100%;
+  /* height: 100%; */
+  max-height: 600px;
 }
 .tabitem {
   width: 720px;

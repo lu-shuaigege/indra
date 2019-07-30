@@ -2,7 +2,9 @@
   <div id="app">
     <Header></Header>
     <transition name="fade">
-      <router-view></router-view>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
     </transition>
     <Footer></Footer>
   </div>
@@ -35,11 +37,15 @@ a {
 /* 为对应的路由跳转时设置动画效果 */
 .fade-enter-active,
 .fade-leave-avtive {
-  transition: all 3s;
+  transition: all 4s;
+}
+.fade-enter-to,
+.fade-leave {
+  height: 100%;
 }
 .fade-enter,
 .fade-leave-to {
-  opacity: 0;
-  /* height: 10px; */
+  opacity: 0.3;
+  height: 0px;
 }
 </style>

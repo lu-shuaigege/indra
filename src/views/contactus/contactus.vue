@@ -2,7 +2,10 @@
   <!-- 联系我们 -->
   <div class="contactus">
     <!-- 上面背景图片 -->
-    <Topbg></Topbg>
+    <!-- <Topbg></Topbg> -->
+    <div class="top">
+      <img :src="bgimg" alt />
+    </div>
     <div class="content">
       <p class="title">
         英铎创智传媒扎根中国20年
@@ -63,11 +66,35 @@ export default {
           t: "T：0571-81590666",
           f: "F：0571-87926089"
         }
-      ]
+      ],
+      bgimg: ""
     };
   },
   components: {
     Topbg
+  },
+  created() {
+    this.topbg();
+  },
+  methods: {
+    //axios请求
+    topbg: function() {
+      this.$api.get(
+        "banners/cases",
+        {
+          page: 1,
+          pageSize: 10
+        },
+        response => {
+          if (response.status >= 200 && response.status < 300) {
+            console.log(response.data); //请求成功，response为成功信息参数
+            this.bgimg = response.data.data[0].image;
+          } else {
+            console.log(response.message); //请求失败，response为失败信息
+          }
+        }
+      );
+    }
   }
 };
 </script>
@@ -77,6 +104,15 @@ export default {
 }
 .content {
   width: 100%;
+}
+.top {
+  width: 100%;
+  height: 700px;
+}
+.top img {
+  width: 100%;
+  /* height: 100%; */
+  max-height: 600px;
 }
 .title {
   width: 432px;

@@ -7,7 +7,7 @@
       <div class="imgcontent">
         <div class="imgitem" v-for="(item,index) in imgs" :key="index">
           <!-- <div class="item"> -->
-          <img :src="item.url" alt />
+          <img :src="item.logo" alt />
           <!-- </div> -->
         </div>
       </div>
@@ -18,29 +18,7 @@
 export default {
   data() {
     return {
-      imgs: [
-        { url: require("../../assets/imgs/home/logo1.png") },
-        { url: require("../../assets/imgs/home/logo2.png") },
-        { url: require("../../assets/imgs/home/logo3.png") },
-        { url: require("../../assets/imgs/home/logo4.png") },
-        { url: require("../../assets/imgs/home/logo5.png") },
-        { url: require("../../assets/imgs/home/logo6.png") },
-        { url: require("../../assets/imgs/home/logo7.png") },
-        { url: require("../../assets/imgs/home/logo8.png") },
-        { url: require("../../assets/imgs/home/logo9.png") },
-        { url: require("../../assets/imgs/home/logo10.png") },
-        { url: require("../../assets/imgs/home/logo11.png") },
-        { url: require("../../assets/imgs/home/logo12.png") },
-        { url: require("../../assets/imgs/home/logo13.png") },
-        { url: require("../../assets/imgs/home/logo14.png") },
-        { url: require("../../assets/imgs/home/logo15.png") },
-        { url: require("../../assets/imgs/home/logo16.png") },
-        { url: require("../../assets/imgs/home/logo17.png") },
-        { url: require("../../assets/imgs/home/logo18.png") },
-        { url: require("../../assets/imgs/home/logo19.png") },
-        { url: require("../../assets/imgs/home/logo20.png") },
-        { url: require("../../assets/imgs/home/logo21.png") }
-      ]
+      imgs: []
     };
   },
   created() {
@@ -59,7 +37,7 @@ export default {
         response => {
           if (response.status >= 200 && response.status < 300) {
             console.log(response.data); //请求成功，response为成功信息参数
-            // this.title = response.data.data.title;
+            this.imgs = response.data.data;
           } else {
             console.log(response.message); //请求失败，response为失败信息
           }
