@@ -145,12 +145,12 @@ export default {
 }
 .top {
   width: 100%;
-  height: 700px;
+  /* height: 700px; */
 }
 .top img {
   width: 100%;
-  /* height: 100%; */
-  max-height: 600px;
+  margin-bottom: 100px;
+  /* max-height: 600px; */
 }
 .tabitem {
   width: 720px;

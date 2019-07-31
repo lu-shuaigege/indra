@@ -8,13 +8,19 @@
       <div class="navcontent_right" @mouseover="mouseOut()">
         <ul class="navlist">
           <router-link to="/home">
-            <li>首页</li>
+            <li @click="clickdown(0)" :style="{borderBottom:active==0?'2px solid #b81b22':'0'}">首页</li>
           </router-link>
           <router-link to="/about">
-            <li>关于英铎</li>
+            <li @click="clickdown(1)" :style="{borderBottom:active==1?'2px solid #b81b22':'0'}">关于英铎</li>
           </router-link>
           <router-link to="/business">
-            <li class="yewu" ref="yewu" @mouseover="mouseOver()">
+            <li
+              class="yewu"
+              ref="yewu"
+              @mouseover="mouseOver()"
+              @click="clickdown(2)"
+              :style="{borderBottom:active==2?'2px solid #b81b22':'0'}"
+            >
               业务介绍
               <ul class="list" ref="downlist" @mouseout="mouseOut()" @click="none()">
                 <!-- <router-link to="/investment"> -->
@@ -28,10 +34,10 @@
             </li>
           </router-link>
           <router-link to="/success">
-            <li>成功案例</li>
+            <li @click="clickdown(3)" :style="{borderBottom:active==3?'2px solid #b81b22':'0'}">成功案例</li>
           </router-link>
           <router-link to="/contactus">
-            <li>联系我们</li>
+            <li @click="clickdown(4)" :style="{borderBottom:active==4?'2px solid #b81b22':'0'}">联系我们</li>
           </router-link>
         </ul>
       </div>
@@ -46,11 +52,13 @@ export default {
       mouseover: "",
       mouseout: "",
       business_id: 0,
-      business_list: []
+      business_list: [],
+      active: 0
     };
   },
   created() {
     this.toplist();
+    this.active = sessionStorage.getItem("titleactive");
   },
   methods: {
     mouseOver: function() {
@@ -62,6 +70,11 @@ export default {
     },
     none: function() {
       this.$refs.downlist.style.display = "none";
+    },
+    clickdown: function(x) {
+      //把页面要传的参数存到sessionStorage里面
+      sessionStorage.setItem("titleactive", x);
+      this.active = x;
     },
     // stopBubble: function(e) {
     //   console.log(e);
@@ -163,10 +176,12 @@ export default {
   letter-spacing: 0px;
   color: #222222;
   text-align: center;
+  padding-bottom: 7px;
+  box-sizing: border-box;
 }
 .navcontent_right .navlist li:hover {
   padding-bottom: 7px;
-  border-bottom: 2px solid #b81b22;
+  border-bottom: 2px solid #b81b22 !important;
 }
 /* .navcontent_right .navlist li:hover .list {
   display: inline-block;

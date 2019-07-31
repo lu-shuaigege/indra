@@ -2,20 +2,16 @@
   <!-- 首页 -->
   <div class="home">
     <!-- 轮播图 -->
-    <el-carousel
-      class="banner animated 1 bounce delay-1s"
-      arrow="never"
-      height="867px"
-      width="100%"
-    >
+    <el-carousel class="banner animated 1 bounce delay-1s" arrow="never" height="53vw" width="100%">
       <el-carousel-item v-for="(item,index) in imgs" :key="index">
         <img :src="item.image" style="width:100%;height:100%" alt />
       </el-carousel-item>
     </el-carousel>
     <!-- 四图 -->
     <Fourimg></Fourimg>
+
     <!-- 简介 -->
-    <Aboutindra></Aboutindra>
+    <Aboutindra class="about"></Aboutindra>
     <!-- 成功案例 -->
     <div class="case">
       <div class="casecontent">
@@ -87,6 +83,9 @@ export default {
   created() {
     this.banner();
   },
+  mounted() {
+    // this.about();
+  },
   methods: {
     //axios请求
     banner: function() {
@@ -111,6 +110,26 @@ export default {
           }
         }
       );
+    },
+    about: function() {
+      // var four = document.getElementsByClassName("four")[0].offsetTop;
+      // console.log(four);
+      var isok = true;
+      $(window).scroll(function() {
+        let about =
+          $(".wordcontent").offset().top -
+          $(window).scrollTop() -
+          $(window).height();
+        console.log(about);
+        if (about < -100 && isok) {
+          $(".wordcontent")
+            .css("margin-top", "0")
+            .css("opacity", "0.8");
+          // alert("ok");
+          isok = false;
+          return;
+        }
+      });
     }
   }
 };
@@ -127,6 +146,7 @@ export default {
 .banner {
   margin-bottom: 100px;
 }
+
 .casecontent {
   width: 100%;
   /* height: 1145px; */
@@ -169,7 +189,7 @@ export default {
 .imgitem {
   width: 29vw;
   min-width: 355px;
-  height: 26vw;
+  height: 28vw;
   min-height: 345px;
   background-color: #ffffff;
   box-sizing: border-box;
@@ -185,6 +205,9 @@ export default {
 }
 .imgitem:hover p {
   color: #ffffff;
+}
+.imgitem:hover .text {
+  color: rgba(255, 255, 255, 0.7);
 }
 .imgitem:hover img {
   transition: all 0.5s;
@@ -208,25 +231,31 @@ export default {
   height: 100%;
 }
 .imgitem .imgitemtitle {
+  width: 95%;
   height: 21px;
   font-family: MicrosoftYaHei;
-  font-size: 1vw;
+  font-size: 1.2vw;
   font-weight: normal;
   font-stretch: normal;
   line-height: 21px;
   letter-spacing: 0px;
   color: #222222;
-  margin: 0.6vw 0 0 1vw;
+  margin: 1.2vw 0 0 1vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 .imgitem .text {
   height: 15px;
   font-family: MicrosoftYaHei;
-  font-size: 14px;
+  font-size: 0.8vw;
   font-weight: normal;
   font-stretch: normal;
   line-height: 15px;
   letter-spacing: 0px;
   color: #999999;
-  margin: 0.3vw 0 0 1vw;
+  margin: 0.5vw 0 0 1vw;
 }
 </style>

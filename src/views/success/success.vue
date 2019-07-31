@@ -153,12 +153,12 @@ export default {
 }
 .top {
   width: 100%;
-  height: 700px;
+  /* height: 700px; */
 }
 .top img {
   width: 100%;
-  /* height: 100%; */
-  max-height: 600px;
+  margin-bottom: 100px;
+  /* max-height: 600px; */
 }
 .case {
   width: 100%;
@@ -185,7 +185,7 @@ export default {
 .imgitem {
   width: 29vw;
   min-width: 355px;
-  height: 26vw;
+  height: 28vw;
   min-height: 345px;
   background-color: #ffffff;
   box-sizing: border-box;
@@ -225,6 +225,7 @@ export default {
   height: 100%;
 }
 .imgitem .imgitemtitle {
+  width: 95%;
   height: 21px;
   font-family: MicrosoftYaHei;
   font-size: 1vw;
@@ -233,7 +234,7 @@ export default {
   line-height: 21px;
   letter-spacing: 0px;
   color: #222222;
-  margin: 0.6vw 0 0 1vw;
+  margin: 1.2vw 0 0 1vw;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -249,7 +250,7 @@ export default {
   line-height: 15px;
   letter-spacing: 0px;
   color: #999999;
-  margin: 0.3vw 0 0 1vw;
+  margin: 0.5vw 0 0 1vw;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;

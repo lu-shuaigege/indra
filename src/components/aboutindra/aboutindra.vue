@@ -27,6 +27,34 @@
 export default {
   data() {
     return {};
+  },
+  // created() {
+  //   this.about();
+  // },
+  mounted() {
+    this.about();
+  },
+  methods: {
+    about: function() {
+      // var four = document.getElementsByClassName("four")[0].offsetTop;
+      // console.log(four);
+      var isok = true;
+      $(window).scroll(function() {
+        let about =
+          $(".wordcontent").offset().top -
+          $(window).scrollTop() -
+          $(window).height();
+        console.log(about);
+        if (about < -100 && isok) {
+          $(".wordcontent")
+            .css("margin-top", "0")
+            .css("opacity", "0.8");
+          // alert("ok");
+          isok = false;
+          return;
+        }
+      });
+    }
   }
 };
 </script>
@@ -36,7 +64,9 @@ export default {
   min-width: 100%;
   min-height: 860px;
   background: url("../../assets/imgs/home/indrabg.jpg") no-repeat;
-  background-position: center;
+  background-position-x: center;
+  padding: 1px;
+  box-sizing: border-box;
 }
 .word {
   width: 1200px;
@@ -49,10 +79,12 @@ export default {
   width: 600px;
   height: 860px;
   background-color: #ffffff;
-  opacity: 0.8;
+  opacity: 0;
   text-align: center;
   padding-top: 100px;
+  margin-top: 100px;
   box-sizing: border-box;
+  transition: margin 0.8s, opacity 1s;
 }
 .titlebg {
   width: 252px;
