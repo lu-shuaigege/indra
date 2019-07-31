@@ -21,7 +21,7 @@
             </div>
 
             <p class="imgitemtitle">{{caseitem.title}}</p>
-            <p class="text">{{caseitem.description}}</p>
+            <p class="text">{{caseitem.classification}}</p>
           </div>
         </div>
       </div>
@@ -73,18 +73,17 @@ export default {
     },
     //axios请求
     pagination: function() {
-      this.$api.post(
-        "api_findGoodsList.do",
+      this.$api.get(
+        "cases",
         {
-          category: this.category,
           page: this.page,
-          pageSize: 12
+          per_page: 12
         },
         response => {
           if (response.status >= 200 && response.status < 300) {
             console.log(response.data); //请求成功，response为成功信息参数
             this.imglist = response.data.data.data;
-            this.total = response.data.total;
+            this.total = response.data.data.total;
             this.display = response.data.per_page;
             console.log(this.imglist);
           } else {
@@ -110,14 +109,14 @@ export default {
         "cases",
         {
           // category: this.category,
-          // page: this.page
-          // pageSize: 12
+          page: this.page,
+          per_page: 12
         },
         response => {
           if (response.status >= 200 && response.status < 300) {
             console.log(response.data); //请求成功，response为成功信息参数
             this.imglist = response.data.data.data;
-            this.total = response.data.total;
+            this.total = response.data.data.total;
             this.display = response.data.per_page;
             console.log(this.imglist);
           } else {
@@ -191,6 +190,7 @@ export default {
   box-sizing: border-box;
   margin-bottom: 50px;
   overflow: hidden;
+  /* flex: 30% !important; */
 }
 .imgitem:hover {
   box-shadow: 0vw 0vw 1vw 0vw rgba(51, 51, 51, 0.15);

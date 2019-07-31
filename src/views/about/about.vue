@@ -493,7 +493,7 @@ export default {
 .bigimg {
   width: 91.15vw;
   min-width: 1200px;
-  background: #f8f8f8;
+  /* background: #f8f8f8; */
   margin: 50px auto;
 }
 .bigimg div {

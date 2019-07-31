@@ -1,7 +1,10 @@
 <template>
   <div class="fourimg">
-    <div class="OURSERVICE">OUR SERVICE</div>
-    <div class="fourimg_title">我们的业务</div>
+    <div class="four">
+      <div class="OURSERVICE">OUR SERVICE</div>
+      <div class="fourimg_title">我们的业务</div>
+    </div>
+
     <div class="imgcontent">
       <div class="imgitem" v-for="(item,index) in fourimg" :key="index">
         <!-- <router-link to="/business"> -->
@@ -47,6 +50,9 @@ export default {
   created() {
     // this.businesses();
   },
+  mounted() {
+    this.up();
+  },
   methods: {
     xiang(row) {
       this.business_id = row;
@@ -77,6 +83,22 @@ export default {
           }
         }
       );
+    },
+    up: function() {
+      //判断元素到达当前窗口的什么位置（简介）
+      var isup = true;
+      $(window).scroll(function() {
+        let istitle =
+          $(".four").offset().top - $(window).scrollTop() - $(window).height();
+        console.log(istitle);
+        if (istitle < -100 && isup) {
+          $(".four")
+            .css("margin-top", "0")
+            .css("opacity", "1");
+          // alert("ok");
+          isup = false;
+        }
+      });
     }
   }
 };
@@ -88,6 +110,14 @@ export default {
   max-height: 45vw;
   min-height: 548px;
   height: 868px;
+  padding: 1px;
+  box-sizing: border-box;
+  margin: 100px auto;
+}
+.four {
+  margin: 100px;
+  opacity: 0;
+  transition: margin 0.8s, opacity 1s;
 }
 .OURSERVICE {
   width: 243px;

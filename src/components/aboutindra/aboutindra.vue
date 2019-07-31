@@ -28,9 +28,9 @@ export default {
   data() {
     return {};
   },
-  // created() {
-  //   this.about();
-  // },
+  created() {
+    // this.about();
+  },
   mounted() {
     this.about();
   },

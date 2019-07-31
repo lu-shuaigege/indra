@@ -103,7 +103,8 @@ export default {
 }
 .top {
   width: 100%;
-  height: 700px;
+  /* height: 700px; */
+  margin-bottom: 100px;
 }
 .top img {
   width: 100%;

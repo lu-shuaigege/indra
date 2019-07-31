@@ -2,8 +2,11 @@
   <!-- 首页 -->
   <div class="and">
     <div class="andcontent">
-      <p class="titlebg">BUSINESS PARTNER</p>
-      <p class="title">合作伙伴</p>
+      <div class="andtitle">
+        <p class="titlebg">BUSINESS PARTNER</p>
+        <p class="title">合作伙伴</p>
+      </div>
+
       <div class="imgcontent">
         <div class="imgitem" v-for="(item,index) in imgs" :key="index">
           <!-- <div class="item"> -->
@@ -26,11 +29,14 @@ export default {
     this.casesid = sessionStorage.getItem("casesid");
     this.partners();
   },
+  mounted() {
+    this.up();
+  },
   methods: {
     //axios请求
     partners: function() {
       this.$api.get(
-        "partners",
+        "partners-top?top=21",
         {
           // id: this.casesid
         },
@@ -43,18 +49,43 @@ export default {
           }
         }
       );
+    },
+    up: function() {
+      //判断元素到达当前窗口的什么位置（简介）
+      var isup = true;
+      $(window).scroll(function() {
+        let istitle =
+          $(".andtitle").offset().top -
+          $(window).scrollTop() -
+          $(window).height();
+        console.log(istitle);
+        if (istitle < -100 && isup) {
+          $(".andtitle")
+            .css("margin-top", "0")
+            .css("opacity", "1");
+          // alert("ok");
+          isup = false;
+        }
+      });
     }
   }
 };
 </script>
 <style scoped>
-.home {
+.and {
   width: 100%;
+  padding: 1px;
+  box-sizing: border-box;
 }
 .andcontent {
   width: 1200px;
   padding: 100px 0;
   margin: 0px auto;
+}
+.andtitle {
+  margin: 100px;
+  opacity: 0;
+  transition: margin 0.8s, opacity 1s;
 }
 .titlebg {
   width: 364px;

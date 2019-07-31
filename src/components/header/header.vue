@@ -72,7 +72,7 @@ export default {
       this.$refs.downlist.style.display = "none";
     },
     clickdown: function(x) {
-      //把页面要传的参数存到sessionStorage里面
+      //点击那个标签哪个下面就变色
       sessionStorage.setItem("titleactive", x);
       this.active = x;
     },

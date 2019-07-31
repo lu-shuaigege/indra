@@ -53,7 +53,7 @@ export default {
     this.active = sessionStorage.getItem("business_id");
     this.businessesid();
     // this.businesses();
-    this.topbg();
+    this.topimg();
   },
   watch: {
     "$store.state.item_id": function() {
@@ -109,18 +109,12 @@ export default {
       );
     },
     //axios请求
-    topbg: function() {
-      //查询条件
-      //   var param = {
-      //     page: page,
-      //     pageSize: pageSize
-      //     //其它查询条件可在下面添加
-      //   };
+    topimg: function() {
       this.$api.get(
-        "banners/about-us",
+        "banners/businesses",
         {
-          page: 1,
-          pageSize: 10
+          // page: 1,
+          // pageSize: 10
         },
         response => {
           if (response.status >= 200 && response.status < 300) {

@@ -15,16 +15,24 @@
     <!-- 成功案例 -->
     <div class="case">
       <div class="casecontent">
-        <p class="titlebg">SUCCESSFUL CASES</p>
-        <p class="title">成功案例</p>
+        <div class="titlediv">
+          <p class="titlebg">SUCCESSFUL CASES</p>
+          <p class="title">成功案例</p>
+        </div>
+
         <div class="imgcontent">
-          <div class="imgitem" v-for="(caseitem,caseindex) in caseimg" :key="caseindex">
+          <div
+            class="imgitem"
+            v-for="(caseitem,caseindex) in caseimg"
+            :key="caseindex"
+            @click="details(caseitem.id)"
+          >
             <div class="img">
-              <img :src="caseitem.url" alt />
+              <img :src="caseitem.cover_image" alt />
             </div>
 
             <p class="imgitemtitle">{{caseitem.title}}</p>
-            <p class="text">{{caseitem.text}}</p>
+            <p class="text">{{caseitem.description}}</p>
           </div>
         </div>
       </div>
@@ -41,38 +49,7 @@ export default {
   data() {
     return {
       imgs: [],
-      caseimg: [
-        {
-          url: require("../../assets/imgs/home/case1.jpg"),
-          title: "上城区千年之约项目访谈",
-          text: "短视频内容营销"
-        },
-        {
-          url: require("../../assets/imgs/home/case2.jpg"),
-          title: "【虎妈猫爸】影视剧项目投资",
-          text: "影视节目投资"
-        },
-        {
-          url: require("../../assets/imgs/home/case3.jpg"),
-          title: "【我的前半生】影视剧项目投资",
-          text: "影视节目投资"
-        },
-        {
-          url: require("../../assets/imgs/home/case4.jpg"),
-          title: "【真心话大冒险】综艺节目投资",
-          text: "短视频内容营销"
-        },
-        {
-          url: require("../../assets/imgs/home/case5.jpg"),
-          title: "曼秀雷敦【旋风少女】影视广告植入",
-          text: "华为移动媒体投放"
-        },
-        {
-          url: require("../../assets/imgs/home/case6.jpg"),
-          title: "毛铺酒&良品铺子&自嗨锅【少年派】影视广告植入",
-          text: "交通出行媒体"
-        }
-      ]
+      caseimg: []
     };
   },
   components: {
@@ -82,12 +59,13 @@ export default {
   },
   created() {
     this.banner();
+    this.caseslist();
   },
   mounted() {
-    // this.about();
+    this.about();
   },
   methods: {
-    //axios请求
+    //axios请求轮播图
     banner: function() {
       //查询条件
       //   var param = {
@@ -111,9 +89,42 @@ export default {
         }
       );
     },
+    //axios请求首页案例
+    caseslist: function() {
+      this.$api.get(
+        "cases-top?top=6",
+        {
+          // category: this.category,
+          // page: this.page
+          // pageSize: 12
+        },
+        response => {
+          if (response.status >= 200 && response.status < 300) {
+            console.log(response.data); //请求成功，response为成功信息参数
+            this.caseimg = response.data.data;
+            console.log(this.caseimg);
+          } else {
+            console.log(response.message); //请求失败，response为失败信息
+          }
+        }
+      );
+    },
+    //点击案例跳转详情页
+    details: function(id) {
+      //把页面要传的参数存到sessionStorage里面
+      sessionStorage.setItem("casesid", id);
+      //路由跳转携带参数
+      this.$router.push({
+        name: "details",
+        params: {
+          // business_id: this.id
+        }
+      });
+    },
     about: function() {
       // var four = document.getElementsByClassName("four")[0].offsetTop;
       // console.log(four);
+      //判断元素到达当前窗口的什么位置（简介）
       var isok = true;
       $(window).scroll(function() {
         let about =
@@ -127,7 +138,22 @@ export default {
             .css("opacity", "0.8");
           // alert("ok");
           isok = false;
-          return;
+        }
+      });
+      //判断元素到达当前窗口的什么位置（简介）
+      var isup = true;
+      $(window).scroll(function() {
+        let istitle =
+          $(".titlediv").offset().top -
+          $(window).scrollTop() -
+          $(window).height();
+        console.log(istitle);
+        if (istitle < -100 && isup) {
+          $(".titlediv")
+            .css("margin-top", "0")
+            .css("opacity", "1");
+          // alert("ok");
+          isup = false;
         }
       });
     }
@@ -150,7 +176,14 @@ export default {
 .casecontent {
   width: 100%;
   /* height: 1145px; */
+  padding: 1px;
+  box-sizing: border-box;
   margin: 100px auto 0 auto;
+}
+.titlediv {
+  margin-top: 100px;
+  opacity: 0;
+  transition: margin 0.8s, opacity 1s;
 }
 .titlebg {
   width: 368px;

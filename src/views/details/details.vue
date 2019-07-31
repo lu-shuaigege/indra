@@ -14,7 +14,6 @@
             </div>
           </a>
         </div>
-        <div class="contitle">{{description}}</div>
         <hr class="hr" />
         <!-- <div class="red"></div> -->
         <div class="word" v-html="content"></div>
@@ -149,6 +148,7 @@ export default {
 .hr {
   width: 100%;
   opacity: 0.6;
+  margin-top: 50px;
 }
 .red {
   width: 60px;

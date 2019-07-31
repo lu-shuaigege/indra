@@ -3,21 +3,23 @@
   <div class="footer">
     <div class="content">
       <div>
-        <router-link to="/business">业务介绍</router-link>
+        <router-link to="/business" @click="tiao(2)">业务介绍</router-link>
       </div>
       <div>
-        <router-link to="/success">成功案例</router-link>
+        <router-link to="/success" @click="tiao(3)">成功案例</router-link>
       </div>
       <div>
-        <router-link to="/">
+        <router-link to="/" @click="tiao(0)">
           <img src="../../assets/imgs/home/footerlogo.png" alt />
         </router-link>
       </div>
       <div>
-        <router-link to="/about">关于英铎</router-link>
+        <router-link to="/about" @click="tiao(1)">关于英铎</router-link>
       </div>
       <div>
-        <router-link to="/contactus">联系我们</router-link>
+        <router-link to="/contactus">
+          <span @click="tiao(4)">联系我们</span>
+        </router-link>
       </div>
     </div>
     <div class="heng"></div>
@@ -27,7 +29,14 @@
 <script>
 export default {
   data() {
-    return {};
+    return { business_id: 0 };
+  },
+  
+  methods: {
+    tiao: function(x) {
+      //把页面要传的参数存到sessionStorage里面
+      sessionStorage.setItem("titleactive", x);
+    }
   }
 };
 </script>

@@ -27,7 +27,7 @@ export default {
 #app {
   margin: 0;
   padding: 0;
-  background: rgba(229, 229, 229, 0.1);
+  /* background: rgba(229, 229, 229, 0.1); */
 }
 ul {
   list-style: none;

@@ -76,6 +76,9 @@ export default {
   created() {
     this.topbg();
   },
+  mounted() {
+    this.up();
+  },
   methods: {
     //axios请求
     topbg: function() {
@@ -94,6 +97,24 @@ export default {
           }
         }
       );
+    },
+    up: function() {
+      //判断元素到达当前窗口的什么位置（简介）
+      var isup = true;
+      $(window).scroll(function() {
+        let istitle =
+          $(".address_content").offset().top -
+          $(window).scrollTop() -
+          $(window).height();
+        console.log(istitle);
+        if (istitle < -100 && isup) {
+          $(".address_content")
+            .css("margin-top", "0")
+            .css("opacity", "1");
+          // alert("ok");
+          isup = false;
+        }
+      });
     }
   }
 };
@@ -141,11 +162,18 @@ export default {
   min-width: 1200px;
   background-color: #f8f8f8;
   margin: 0 auto 100px auto;
+  padding: 1px;
+  box-sizing: border-box;
 }
 .address_content {
   width: 1200px;
   height: 443px;
-  margin: 0 auto;
+  /* margin: 100px auto 0 auto; */
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 100px;
+  opacity: 0;
+  transition: margin 0.8s, opacity 1s;
 }
 .address_title {
   width: 1200px;
