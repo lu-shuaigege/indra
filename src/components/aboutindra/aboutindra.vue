@@ -32,7 +32,7 @@ export default {
     // this.about();
   },
   mounted() {
-    this.about();
+    // this.about();
   },
   methods: {
     about: function() {
@@ -41,9 +41,12 @@ export default {
       var isok = true;
       $(window).scroll(function() {
         let about =
-          $(".wordcontent").offset().top -
-          $(window).scrollTop() -
-          $(window).height();
+          document.getElementsByClassName("wordcontent")[0].offsetTop -
+          document.body.scrollTop -
+          document.documentElement.clientHeight;
+        // $(".wordcontent").offset().top -
+        //   $(window).scrollTop() -
+        //   $(window).height();
         console.log(about);
         if (about < -100 && isok) {
           $(".wordcontent")

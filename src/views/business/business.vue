@@ -45,6 +45,14 @@ export default {
     this.businesses();
     this.topbg();
   },
+  mounted() {
+    this.$router.afterEach((to, from, next) => {
+      window.scrollTo(0, 0);
+    });
+    //在dom挂载的时候注册scroll事件
+    window.addEventListener("scroll", this.four);
+  },
+
   methods: {
     //axios请求
     businesses: function() {
@@ -93,7 +101,44 @@ export default {
           }
         }
       );
+    },
+    four: function() {
+      //判断元素到达当前窗口的什么位置（四图）
+      let isfour = true;
+      let tabBar = document.getElementsByClassName("four")[0].offsetTop;
+      let t = document.documentElement.scrollTop || document.body.scrollTop;
+      let h = document.documentElement.clientHeight;
+      console.log(tabBar);
+      console.log(t);
+      console.log(h);
+      let isshow = tabBar - t - h;
+      console.log(isshow);
+      if (isshow < -100 && isfour) {
+        $(".four")
+          .css("margin-top", "0")
+          .css("opacity", "1");
+        // alert("ok");
+        isfour = false;
+      }
+      var isup = true;
+      let andtitle = document.getElementsByClassName("andtitle")[0].offsetTop;
+      console.log(tabBar);
+      console.log(t);
+      console.log(h);
+      let isandlistshow = andtitle - t - h;
+      console.log(isandlistshow);
+      if (isandlistshow < -100 && isup) {
+        $(".andtitle")
+          .css("margin-top", "0")
+          .css("opacity", "1");
+        // alert("ok");
+        isup = false;
+      }
     }
+  },
+  //页面销毁前注销scroll事件
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.four);
   }
 };
 </script>

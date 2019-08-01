@@ -51,7 +51,10 @@ export default {
     // this.businesses();
   },
   mounted() {
-    this.up();
+    // this.up();
+  },
+  beforeDestroy() {
+    // window.removeEventListener("scroll", this.up);
   },
   methods: {
     xiang(row) {

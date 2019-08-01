@@ -60,6 +60,14 @@ export default {
     this.toplist();
     this.active = sessionStorage.getItem("titleactive");
   },
+  watch: {
+    "$store.state.item_id": function() {
+      //你需要执行的代码
+      this.active = this.$store.state.item_id;
+      console.log(this.active);
+      console.log(this.$store.state.item_id);
+    }
+  },
   methods: {
     mouseOver: function() {
       window.event ? (window.event.cancelBubble = true) : e.stopPropagation();

@@ -145,25 +145,23 @@ export default {
     Aboutindra,
     Topbg
   },
+
+  created() {
+    this.histories();
+    this.about();
+  },
   //让页面滚动到顶部
   mounted() {
     this.$router.afterEach((to, from, next) => {
       window.scrollTo(0, 0);
     });
+    // this.upabout();
+    window.addEventListener("scroll", this.upabout);
   },
-  created() {
-    this.histories();
-    this.about();
-  },
+
   methods: {
     //axios请求
     histories: function() {
-      //查询条件
-      //   var param = {
-      //     page: page,
-      //     pageSize: pageSize
-      //     //其它查询条件可在下面添加
-      //   };
       this.$api.get(
         "histories",
         {
@@ -203,7 +201,30 @@ export default {
           }
         }
       );
+    },
+    upabout: function() {
+      // var four = document.getElementsByClassName("four")[0].offsetTop;
+      // console.log(four);
+      let istrue = true;
+      let tabBar = document.getElementsByClassName("wordcontent")[0].offsetTop;
+      let t = document.documentElement.scrollTop || document.body.scrollTop;
+      let h = document.documentElement.clientHeight;
+      console.log(tabBar);
+      console.log(t);
+      console.log(h);
+      let isshow = tabBar - t - h;
+      console.log(isshow);
+      if (isshow < -100 && istrue) {
+        $(".wordcontent")
+          .css("margin-top", "0")
+          .css("opacity", "0.8");
+        // alert("ok");
+        istrue = false;
+      }
     }
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.upabout);
   }
 };
 </script>

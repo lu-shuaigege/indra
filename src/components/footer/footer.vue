@@ -3,18 +3,26 @@
   <div class="footer">
     <div class="content">
       <div>
-        <router-link to="/business" @click="tiao(2)">业务介绍</router-link>
-      </div>
-      <div>
-        <router-link to="/success" @click="tiao(3)">成功案例</router-link>
-      </div>
-      <div>
-        <router-link to="/" @click="tiao(0)">
-          <img src="../../assets/imgs/home/footerlogo.png" alt />
+        <router-link to="/business">
+          <span @click="tiao(2)">业务介绍</span>
         </router-link>
       </div>
       <div>
-        <router-link to="/about" @click="tiao(1)">关于英铎</router-link>
+        <router-link to="/success">
+          <span @click="tiao(3)">成功案例</span>
+        </router-link>
+      </div>
+      <div>
+        <router-link to="/">
+          <span @click="tiao(0)">
+            <img src="../../assets/imgs/home/footerlogo.png" alt />
+          </span>
+        </router-link>
+      </div>
+      <div>
+        <router-link to="/about" @click="tiao(1)">
+          <span @click="tiao(1)">关于英铎</span>
+        </router-link>
       </div>
       <div>
         <router-link to="/contactus">
@@ -31,11 +39,13 @@ export default {
   data() {
     return { business_id: 0 };
   },
-  
+
   methods: {
     tiao: function(x) {
       //把页面要传的参数存到sessionStorage里面
       sessionStorage.setItem("titleactive", x);
+      this.business_id = x;
+      this.$store.commit("item_id", this.business_id);
     }
   }
 };

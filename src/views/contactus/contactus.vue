@@ -77,8 +77,12 @@ export default {
     this.topbg();
   },
   mounted() {
-    this.up();
+    this.$router.afterEach((to, from, next) => {
+      window.scrollTo(0, 0);
+    });
+    window.addEventListener("scroll", this.up);
   },
+
   methods: {
     //axios请求
     topbg: function() {
@@ -101,21 +105,42 @@ export default {
     up: function() {
       //判断元素到达当前窗口的什么位置（简介）
       var isup = true;
-      $(window).scroll(function() {
-        let istitle =
-          $(".address_content").offset().top -
-          $(window).scrollTop() -
-          $(window).height();
-        console.log(istitle);
-        if (istitle < -100 && isup) {
-          $(".address_content")
-            .css("margin-top", "0")
-            .css("opacity", "1");
-          // alert("ok");
-          isup = false;
-        }
-      });
+      let tabBar = document.getElementsByClassName("address_content")[0]
+        .offsetTop;
+      let t = document.documentElement.scrollTop || document.body.scrollTop;
+      let h = document.documentElement.clientHeight;
+      console.log(tabBar);
+      console.log(t);
+      console.log(h);
+      let isshow = tabBar - t - h;
+      console.log(isshow);
+      if (isshow < -100 && isup) {
+        $(".address_content")
+          .css("margin-top", "0")
+          .css("opacity", "1");
+        // alert("ok");
+        isup = false;
+      }
+      // if(t)
+      // $(window).scroll(function() {
+      //   let istitle =
+      //     $(".address_content").offset().top -
+      //     $(window).scrollTop() -
+      //     $(window).height();
+      //   console.log(istitle);
+      //   if (istitle < -100 && isup) {
+      //     $(".address_content")
+      //       .css("margin-top", "0")
+      //       .css("opacity", "1");
+      //     // alert("ok");
+      //     isup = false;
+      //     $(window).unbind(); // 消除绑定的事件
+      //   }
+      // });
     }
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.up);
   }
 };
 </script>

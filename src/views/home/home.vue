@@ -62,8 +62,12 @@ export default {
     this.caseslist();
   },
   mounted() {
-    this.about();
+    this.$router.afterEach((to, from, next) => {
+      window.scrollTo(0, 0);
+    });
+    window.addEventListener("scroll", this.about);
   },
+
   methods: {
     //axios请求轮播图
     banner: function() {
@@ -122,41 +126,55 @@ export default {
       });
     },
     about: function() {
-      // var four = document.getElementsByClassName("four")[0].offsetTop;
-      // console.log(four);
-      //判断元素到达当前窗口的什么位置（简介）
-      var isok = true;
       $(window).scroll(function() {
-        let about =
-          $(".wordcontent").offset().top -
-          $(window).scrollTop() -
-          $(window).height();
-        console.log(about);
-        if (about < -100 && isok) {
+        //判断元素到达当前窗口的什么位置（简介）
+        var isok = true;
+        let wordcontent = document.getElementsByClassName("wordcontent")[0].offsetTop;
+        let t = document.documentElement.scrollTop || document.body.scrollTop;
+        let h = document.documentElement.clientHeight;
+        let isshow = wordcontent - t - h;
+        if (isshow < -100 && isok) {
           $(".wordcontent")
             .css("margin-top", "0")
             .css("opacity", "0.8");
-          // alert("ok");
           isok = false;
         }
-      });
-      //判断元素到达当前窗口的什么位置（简介）
-      var isup = true;
-      $(window).scroll(function() {
-        let istitle =
-          $(".titlediv").offset().top -
-          $(window).scrollTop() -
-          $(window).height();
-        console.log(istitle);
-        if (istitle < -100 && isup) {
+        //判断元素到达当前窗口的什么位置（简介）
+        let isup = true;
+        let titlediv = document.getElementsByClassName("titlediv")[0].offsetTop;
+        let istitledivshow = titlediv - t - h;
+        if (istitledivshow < -100 && isup) {
           $(".titlediv")
             .css("margin-top", "0")
             .css("opacity", "1");
-          // alert("ok");
           isup = false;
+        }
+        //判断元素到达当前窗口的什么位置（四图）
+        let isfour = true;
+        let four = document.getElementsByClassName("four")[0].offsetTop;
+        let fourimg = four - t - h;
+        if (fourimg < -100 && isok) {
+          $(".four")
+            .css("margin-top", "0")
+            .css("opacity", "1");
+          isfour = false;
+        }
+        //判断元素到达当前窗口的什么位置（合作伙伴）
+        let isand = true;
+        let andtitle = document.getElementsByClassName("andtitle")[0].offsetTop;
+        let and = andtitle - t - h;
+        console.log(fourimg);
+        if (and < -100 && isand) {
+          $(".andtitle")
+            .css("margin-top", "0")
+            .css("opacity", "1");
+          isand = false;
         }
       });
     }
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.about);
   }
 };
 </script>

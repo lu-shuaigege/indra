@@ -30,7 +30,7 @@ export default {
     this.partners();
   },
   mounted() {
-    this.up();
+    // this.up();
   },
   methods: {
     //axios请求
@@ -83,7 +83,7 @@ export default {
   margin: 0px auto;
 }
 .andtitle {
-  margin: 100px;
+  margin-top: 100px;
   opacity: 0;
   transition: margin 0.8s, opacity 1s;
 }
