@@ -28,6 +28,8 @@ export default {
   margin: 0;
   padding: 0;
   /* background: rgba(229, 229, 229, 0.1); */
+  margin: 0 auto;
+  min-width: 1200px;
 }
 ul {
   list-style: none;
