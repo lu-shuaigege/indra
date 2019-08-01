@@ -1,9 +1,13 @@
 <template>
   <div class="details">
-    <Topbg></Topbg>
+    <!-- 上面背景图片 -->
+    <!-- <Topbg></Topbg> -->
+    <div class="top">
+      <img :src="bgimg" alt />
+    </div>
     <div class="details_content">
       <div class="content">
-        <div class="top">
+        <div class="toptitle">
           <div class="top_left">
             <p class="title">{{title}}</p>
             <p class="text">发布时间：{{time}}</p>
@@ -22,7 +26,6 @@
   </div>
 </template>
 <script>
-import Topbg from "@/components/topbg/topbg.vue";
 export default {
   data() {
     return {
@@ -32,16 +35,16 @@ export default {
       url: "",
       casesid: 0,
       istrue: false,
-      description: ""
+      description: "",
+      bgimg: ""
     };
   },
-  components: {
-    Topbg
-  },
+  components: {},
   created() {
     //从sessionStorage把页面要用的参数取出来
     this.casesid = sessionStorage.getItem("casesid");
     this.cases();
+    this.topbg();
   },
   updated() {
     // jquery方法修改
@@ -83,6 +86,24 @@ export default {
           }
         }
       );
+    },
+    //axios请求
+    topbg: function() {
+      this.$api.get(
+        "banners/cases",
+        {
+          page: 1,
+          pageSize: 10
+        },
+        response => {
+          if (response.status >= 200 && response.status < 300) {
+            console.log(response.data); //请求成功，response为成功信息参数
+            this.bgimg = response.data.data[0].image;
+          } else {
+            console.log(response.message); //请求失败，response为失败信息
+          }
+        }
+      );
     }
   }
 };
@@ -98,6 +119,15 @@ export default {
   margin: 0 auto;
 }
 .top {
+  width: 100%;
+  /* height: 700px; */
+}
+.top img {
+  width: 100%;
+  margin-bottom: 100px;
+  /* max-height: 600px; */
+}
+.toptitle {
   width: 1200px;
   height: 50px;
   display: flex;

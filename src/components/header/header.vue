@@ -58,7 +58,11 @@ export default {
   },
   created() {
     this.toplist();
-    this.active = sessionStorage.getItem("titleactive");
+    if (sessionStorage.getItem("titleactive") == null) {
+      this.active = 0;
+    } else {
+      this.active = sessionStorage.getItem("titleactive");
+    }
   },
   watch: {
     "$store.state.item_id": function() {

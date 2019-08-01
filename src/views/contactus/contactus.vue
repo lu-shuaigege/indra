@@ -36,8 +36,6 @@
   </div>
 </template>
 <script>
-import Topbg from "@/components/topbg/topbg.vue";
-import pagination from "../../components/pagination/pagination.vue";
 export default {
   data() {
     return {
@@ -70,10 +68,9 @@ export default {
       bgimg: ""
     };
   },
-  components: {
-    Topbg
-  },
+  components: {},
   created() {
+    // debugger
     this.topbg();
   },
   mounted() {
@@ -87,14 +84,14 @@ export default {
     //axios请求
     topbg: function() {
       this.$api.get(
-        "banners/cases",
+        "banners/contact-us",
         {
           page: 1,
           pageSize: 10
         },
         response => {
           if (response.status >= 200 && response.status < 300) {
-            console.log(response.data); //请求成功，response为成功信息参数
+            // console.log(response.data); //请求成功，response为成功信息参数
             this.bgimg = response.data.data[0].image;
           } else {
             console.log(response.message); //请求失败，response为失败信息
@@ -121,22 +118,6 @@ export default {
         // alert("ok");
         isup = false;
       }
-      // if(t)
-      // $(window).scroll(function() {
-      //   let istitle =
-      //     $(".address_content").offset().top -
-      //     $(window).scrollTop() -
-      //     $(window).height();
-      //   console.log(istitle);
-      //   if (istitle < -100 && isup) {
-      //     $(".address_content")
-      //       .css("margin-top", "0")
-      //       .css("opacity", "1");
-      //     // alert("ok");
-      //     isup = false;
-      //     $(window).unbind(); // 消除绑定的事件
-      //   }
-      // });
     }
   },
   beforeDestroy() {
