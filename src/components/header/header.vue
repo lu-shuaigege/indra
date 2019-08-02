@@ -151,7 +151,6 @@ export default {
   background-color: #ffffff;
   display: flex;
   align-items: center;
-  /* border: 1px solid; */
 }
 .navimg_left {
   width: 240px;
@@ -195,9 +194,6 @@ export default {
   padding-bottom: 7px;
   border-bottom: 2px solid #b81b22 !important;
 }
-/* .navcontent_right .navlist li:hover .list {
-  display: inline-block;
-} */
 .yewu {
   position: relative;
   /* height: 50px; */
