@@ -59,13 +59,15 @@ export default {
   methods: {
     xiang(row) {
       this.business_id = row;
+      this.$store.commit("item_id", 2);
+      sessionStorage.setItem("titleactive", 2);
       //把页面要传的参数存到sessionStorage里面
       sessionStorage.setItem("business_id", this.business_id);
-      //   console.log(row); //此时就能拿到整行的信息
+      //路由跳转携带参数
       this.$router.push({
         name: "investment",
         params: {
-          business_id: this.business_id
+          business_id: this.id
         }
       });
     },

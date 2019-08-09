@@ -58,10 +58,20 @@ export default {
   },
   created() {
     this.toplist();
-    if (sessionStorage.getItem("titleactive") == null) {
+    console.log(sessionStorage.getItem("titleactive"));
+    // this.active = 0;
+    if (
+      sessionStorage.getItem("titleactive") == null ||
+      sessionStorage.getItem("titleactive") == undefined ||
+      sessionStorage.getItem("titleactive") == ""
+    ) {
       this.active = 0;
+      sessionStorage.setItem("titleactive", 0);
     } else {
       this.active = sessionStorage.getItem("titleactive");
+      console.log(this.active);
+
+      console.log(sessionStorage.getItem("titleactive"));
     }
   },
   watch: {
@@ -86,6 +96,7 @@ export default {
     clickdown: function(x) {
       //点击那个标签哪个下面就变色
       sessionStorage.setItem("titleactive", x);
+      this.$store.commit("item_id", x);
       this.active = x;
     },
     // stopBubble: function(e) {
@@ -163,14 +174,16 @@ export default {
   height: 100%;
 }
 .navcontent {
-  width: 1200px;
+  width: 1285px;
   height: 19px;
-  display: flex;
-  justify-content: flex-end;
+  /* display: flex;
+  justify-content: flex-end; */
 }
 .navcontent_right {
+  float: right;
   width: 536px;
   height: 19px;
+  margin-right: 85px;
   position: relative;
 }
 .navcontent_right .navlist {

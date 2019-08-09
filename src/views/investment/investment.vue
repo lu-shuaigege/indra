@@ -13,7 +13,7 @@
           v-for="(item,index) in tablist"
           :key="index"
           @click="nav(item.id)"
-          :style="{background:item.id==active?'#b81b22':'#fff',color:item.id==active?'#fff':'#000000'}"
+          :style="{background:item.id==active?'#b81b22':'#d3d3d4',color:item.id==active?'#fff':'#fff'}"
         >{{item.title}}</li>
       </ul>
       <div class="item_content">
@@ -52,8 +52,7 @@ export default {
     //从sessionStorage把页面要用的参数取出来
     this.active = sessionStorage.getItem("business_id");
     this.businessesid();
-    // this.businesses();
-    this.topimg();
+    this.topimg(sessionStorage.getItem("business_id"));
   },
   watch: {
     "$store.state.item_id": function() {
@@ -72,8 +71,9 @@ export default {
       this.active = index;
       console.log(this.active);
       this.businessesid();
+      this.topimg(index);
     },
-    //axios请求
+    //axios请求业务介绍详情
     businessesid: function() {
       this.$api.get(
         "businesses/" + this.active,
@@ -108,10 +108,10 @@ export default {
         }
       );
     },
-    //axios请求
-    topimg: function() {
+    //axios请求业务介绍上面图片
+    topimg: function(x) {
       this.$api.get(
-        "banners/businesses",
+        "banners/businesses/" + x,
         {
           // page: 1,
           // pageSize: 10
@@ -147,35 +147,26 @@ export default {
   /* max-height: 600px; */
 }
 .tabitem {
-  width: 720px;
+  width: 1200px;
   margin: 0px auto;
   display: flex;
   justify-content: space-between;
 }
 .tabitem li {
-  width: 180px;
-  height: 40px;
+  width: 280px;
+  height: 50px;
   font-family: MicrosoftYaHei;
   font-size: 16px;
   font-weight: normal;
   font-stretch: normal;
-  line-height: 40px;
+  line-height: 50px;
   letter-spacing: 0px;
-  color: #666666;
+  color: #ffffff;
   text-align: center;
-  border: solid 1px #999999;
+  background: #d3d3d4;
 }
 .tabitem li:hover {
   cursor: pointer;
-}
-.tabitem li:nth-child(1) {
-  border-right: 0;
-}
-.tabitem li:nth-child(2) {
-  border-right: 0;
-}
-.tabitem li:nth-child(3) {
-  border-right: 0;
 }
 .item_content {
   width: 100%;

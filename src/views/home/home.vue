@@ -2,7 +2,12 @@
   <!-- 首页 -->
   <div class="home">
     <!-- 轮播图 -->
-    <el-carousel class="banner animated 1 bounce delay-1s" arrow="never" height="53vw" width="100%">
+    <el-carousel
+      class="banner animated 1 bounce delay-1s"
+      arrow="always"
+      height="53vw"
+      width="100%"
+    >
       <el-carousel-item v-for="(item,index) in imgs" :key="index">
         <img :src="item.image" style="width:100%;height:100%" alt />
       </el-carousel-item>
@@ -129,7 +134,8 @@ export default {
       $(window).scroll(function() {
         //判断元素到达当前窗口的什么位置（简介）
         var isok = true;
-        let wordcontent = document.getElementsByClassName("wordcontent")[0].offsetTop;
+        let wordcontent = document.getElementsByClassName("wordcontent")[0]
+          .offsetTop;
         let t = document.documentElement.scrollTop || document.body.scrollTop;
         let h = document.documentElement.clientHeight;
         let isshow = wordcontent - t - h;
@@ -190,6 +196,8 @@ export default {
 .banner {
   margin-bottom: 100px;
 }
+
+
 
 .casecontent {
   width: 100%;

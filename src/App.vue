@@ -78,4 +78,18 @@ a {
   background-color: #ffffff;
   opacity: 1;
 }
+#app > div.home > div.banner.animated.\31 .bounce.delay-1s.el-carousel.el-carousel--horizontal > div > button.el-carousel__arrow.el-carousel__arrow--left {
+  width: 50px !important;
+  height: 50px !important;
+}
+#app > div.home > div.banner.animated.\31 .bounce.delay-1s.el-carousel.el-carousel--horizontal > div > button.el-carousel__arrow.el-carousel__arrow--left  i{
+-webkit-transform:scale(2);
+}
+#app > div.home > div.banner.animated.\31 .bounce.delay-1s.el-carousel.el-carousel--horizontal > div > button.el-carousel__arrow.el-carousel__arrow--right {
+  width: 50px !important;
+  height: 50px !important;
+}
+#app > div.home > div.banner.animated.\31 .bounce.delay-1s.el-carousel.el-carousel--horizontal > div > button.el-carousel__arrow.el-carousel__arrow--right i{
+  -webkit-transform:scale(2);
+}
 </style>
