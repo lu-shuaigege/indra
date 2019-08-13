@@ -45,7 +45,7 @@ export default {
       //把页面要传的参数存到sessionStorage里面
       sessionStorage.setItem("titleactive", x);
       this.business_id = x;
-      this.$store.commit("item_id", this.business_id);
+      this.$store.commit("title_id", this.business_id);
     }
   }
 };

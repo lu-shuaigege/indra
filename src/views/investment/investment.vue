@@ -8,13 +8,12 @@
     </div>
     <div class="content">
       <ul class="tabitem">
-        <li
-          class
-          v-for="(item,index) in tablist"
-          :key="index"
-          @click="nav(item.id)"
-          :style="{background:item.id==active?'#b81b22':'#d3d3d4',color:item.id==active?'#fff':'#fff'}"
-        >{{item.title}}</li>
+        <li class v-for="(item,index) in tablist" :key="index" @click="nav(item.id)">
+          <p
+            :style="{background:item.id==active?' #b81b22':'#d3d3d4',color:item.id==active?'#fff':'#fff'}"
+          >{{item.title}}</p>
+          <div class="sanjiao" :style="{display:item.id==active?'inline-block':'none'}"></div>
+        </li>
       </ul>
       <div class="item_content">
         <div class="item_img">
@@ -32,10 +31,26 @@ export default {
   data() {
     return {
       tablist: [
-        { id: 1, title: "影视节目投资" },
-        { id: 2, title: "短视频内容营销" },
-        { id: 3, title: "华为移动媒体投放" },
-        { id: 4, title: "交通出行媒体" }
+        {
+          id: 1,
+          title: "影视节目投资",
+          image: require("../../assets/imgs/home/redbtn.png")
+        },
+        {
+          id: 2,
+          title: "短视频内容营销",
+          image: require("../../assets/imgs/home/redbtn.png")
+        },
+        {
+          id: 3,
+          title: "华为移动媒体投放",
+          image: require("../../assets/imgs/home/redbtn.png")
+        },
+        {
+          id: 4,
+          title: "交通出行媒体",
+          image: require("../../assets/imgs/home/redbtn.png")
+        }
       ],
       image: "",
       active: 0,
@@ -61,6 +76,7 @@ export default {
       console.log(this.active);
       console.log(this.$store.state.item_id);
       this.businessesid();
+      this.topimg(sessionStorage.getItem("business_id"));
     }
   },
   methods: {
@@ -68,7 +84,9 @@ export default {
     nav: function(index) {
       //把页面要传的参数存到sessionStorage里面
       this.active = sessionStorage.setItem("business_id", index);
+      this.active = sessionStorage.setItem("titleactive", 2);
       this.active = index;
+      this.$store.commit("title_id", 2);
       console.log(this.active);
       this.businessesid();
       this.topimg(index);
@@ -153,17 +171,41 @@ export default {
   justify-content: space-between;
 }
 .tabitem li {
-  width: 280px;
+  width: 285px;
   height: 50px;
+  /* font-family: MicrosoftYaHei;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  line-height: 39px;
+  letter-spacing: 0px;
+  color: #ffffff;
+  text-align: center; */
+  /* background: #d3d3d4; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.tabitem li p {
+  width: 285px;
+  height: 40px;
   font-family: MicrosoftYaHei;
   font-size: 16px;
   font-weight: normal;
   font-stretch: normal;
-  line-height: 50px;
+  line-height: 40px;
   letter-spacing: 0px;
   color: #ffffff;
   text-align: center;
-  background: #d3d3d4;
+  background: #b81b22;
+}
+.sanjiao {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #b81b22;
+  margin: 0px auto;
 }
 .tabitem li:hover {
   cursor: pointer;

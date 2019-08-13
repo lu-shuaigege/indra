@@ -52,12 +52,29 @@ export default {
       mouseover: "",
       mouseout: "",
       business_id: 0,
-      business_list: [],
+      business_list: [
+        {
+          id: 1,
+          title: "影视节目投资"
+        },
+        {
+          id: 2,
+          title: "短视频营销"
+        },
+        {
+          id: 3,
+          title: "华为移动媒体播放"
+        },
+        {
+          id: 4,
+          title: "交通出行媒体"
+        }
+      ],
       active: 0
     };
   },
   created() {
-    this.toplist();
+    // this.toplist();
     console.log(sessionStorage.getItem("titleactive"));
     // this.active = 0;
     if (
@@ -75,11 +92,11 @@ export default {
     }
   },
   watch: {
-    "$store.state.item_id": function() {
+    "$store.state.title_id": function() {
       //你需要执行的代码
-      this.active = this.$store.state.item_id;
+      this.active = this.$store.state.title_id;
       console.log(this.active);
-      console.log(this.$store.state.item_id);
+      console.log(this.$store.state.title_id);
     }
   },
   methods: {
@@ -119,9 +136,10 @@ export default {
     },
     xiang(row) {
       // 阻止浏览器的冒泡
-      // window.event ? (window.event.cancelBubble = true) : e.stopPropagation();
+      window.event ? (window.event.cancelBubble = true) : e.stopPropagation();
       // this.stopBubble();
       this.stopDefault();
+      this.active = 2;
       this.business_id = row;
       this.$store.commit("item_id", this.business_id);
       //把页面要传的参数存到sessionStorage里面
@@ -130,9 +148,10 @@ export default {
       this.$router.push({
         name: "investment",
         params: {
-          business_id: this.id
+          // business_id: this.business_id
         }
       });
+      this.$refs.downlist.style.display = "none";
     },
     //axios请求
     toplist: function() {

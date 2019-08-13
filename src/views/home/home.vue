@@ -21,8 +21,8 @@
     <div class="case">
       <div class="casecontent">
         <div class="titlediv">
-          <p class="titlebg">SUCCESSFUL CASES</p>
-          <p class="title">成功案例</p>
+          <p class="titlebg">成功案例</p>
+          <p class="title">SUCCESSFUL CASES</p>
         </div>
 
         <div class="imgcontent">
@@ -197,8 +197,6 @@ export default {
   margin-bottom: 100px;
 }
 
-
-
 .casecontent {
   width: 100%;
   /* height: 1145px; */
@@ -212,20 +210,7 @@ export default {
   transition: margin 0.8s, opacity 1s;
 }
 .titlebg {
-  width: 368px;
-  height: 40px;
-  font-family: Impact;
-  font-size: 48px;
-  font-weight: normal;
-  font-stretch: normal;
-  line-height: 40px;
-  letter-spacing: 0px;
-  color: #b81b22;
-  opacity: 0.2;
-  margin: 0 auto;
-}
-.title {
-  width: 96px;
+  width: 97px;
   height: 24px;
   font-family: MicrosoftYaHei-Bold;
   font-size: 24px;
@@ -234,7 +219,19 @@ export default {
   line-height: 24px;
   letter-spacing: 0px;
   color: #000000;
-  margin: -12px auto 0 auto;
+  margin: 0px auto;
+}
+.title {
+  width: 134px;
+  height: 11px;
+  font-family: ArialMT;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  line-height: 11px;
+  letter-spacing: 0px;
+  color: #999999;
+  margin: 10px auto 0 auto;
 }
 .imgcontent {
   width: 92vw;

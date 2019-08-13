@@ -3,8 +3,8 @@
   <div class="and">
     <div class="andcontent">
       <div class="andtitle">
-        <p class="titlebg">BUSINESS PARTNER</p>
-        <p class="title">合作伙伴</p>
+        <p class="titlebg">合作伙伴</p>
+        <p class="title">BUSINESS PARTNER</p>
       </div>
 
       <div class="imgcontent">
@@ -88,19 +88,6 @@ export default {
   transition: margin 0.8s, opacity 1s;
 }
 .titlebg {
-  width: 364px;
-  height: 40px;
-  font-family: Impact;
-  font-size: 48px;
-  font-weight: normal;
-  font-stretch: normal;
-  line-height: 40px;
-  letter-spacing: 0px;
-  color: #b81b22;
-  opacity: 0.2;
-  margin: 0 auto;
-}
-.title {
   width: 98px;
   height: 24px;
   font-family: MicrosoftYaHei-Bold;
@@ -110,7 +97,19 @@ export default {
   line-height: 24px;
   letter-spacing: 0px;
   color: #000000;
-  margin: -12px auto 0 auto;
+  margin: 0px auto;
+}
+.title {
+  width: 142px;
+  height: 11px;
+  font-family: ArialMT;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  line-height: 24px;
+  letter-spacing: 0px;
+  color: #999999;
+  margin: 10px auto 0 auto;
 }
 .imgcontent {
   width: 1200px;

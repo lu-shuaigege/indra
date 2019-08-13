@@ -1,8 +1,8 @@
 <template>
   <div class="fourimg">
     <div class="four">
-      <div class="OURSERVICE">OUR SERVICE</div>
-      <div class="fourimg_title">我们的业务</div>
+      <div class="OURSERVICE">我们的业务</div>
+      <div class="fourimg_title">OUR SERVICE</div>
     </div>
 
     <div class="imgcontent">
@@ -59,7 +59,7 @@ export default {
   methods: {
     xiang(row) {
       this.business_id = row;
-      this.$store.commit("item_id", 2);
+      this.$store.commit("title_id", 2);
       sessionStorage.setItem("titleactive", 2);
       //把页面要传的参数存到sessionStorage里面
       sessionStorage.setItem("business_id", this.business_id);
@@ -114,31 +114,18 @@ export default {
   min-width: 1200px;
   max-height: 45vw;
   min-height: 548px;
-  height: 868px;
+  /* height: 868px; */
   padding: 1px;
   box-sizing: border-box;
   margin: 100px auto;
 }
 .four {
-  margin: 100px;
+  margin-bottom: 3vw;
   opacity: 0;
   transition: margin 0.8s, opacity 1s;
 }
 .OURSERVICE {
-  width: 243px;
-  height: 40px;
-  font-family: Impact;
-  font-size: 48px;
-  font-weight: normal;
-  font-stretch: normal;
-  line-height: 40px;
-  letter-spacing: 0px;
-  color: #b81b22;
-  opacity: 0.2;
-  margin: 0 auto;
-}
-.fourimg_title {
-  width: 120px;
+  width: 122px;
   height: 24px;
   font-family: MicrosoftYaHei-Bold;
   font-size: 24px;
@@ -147,7 +134,19 @@ export default {
   line-height: 24px;
   letter-spacing: 0px;
   color: #000000;
-  margin: -12px auto 0 auto;
+  margin: 0px auto;
+}
+.fourimg_title {
+  width: 95px;
+  height: 11px;
+  font-family: ArialMT;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  line-height: 11px;
+  letter-spacing: 0px;
+  color: #999999;
+  margin: 10px auto 0 auto;
 }
 .imgcontent {
   width: 91vw;
