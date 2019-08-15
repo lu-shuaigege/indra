@@ -125,7 +125,6 @@ export default {
   transition: margin 0.8s, opacity 1s;
 }
 .OURSERVICE {
-  width: 122px;
   height: 24px;
   font-family: MicrosoftYaHei-Bold;
   font-size: 24px;
@@ -135,9 +134,9 @@ export default {
   letter-spacing: 0px;
   color: #000000;
   margin: 0px auto;
+  text-align: center;
 }
 .fourimg_title {
-  width: 95px;
   height: 11px;
   font-family: ArialMT;
   font-size: 14px;
@@ -147,6 +146,7 @@ export default {
   letter-spacing: 0px;
   color: #999999;
   margin: 10px auto 0 auto;
+  text-align: center;
 }
 .imgcontent {
   width: 91vw;

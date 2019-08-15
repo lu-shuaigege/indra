@@ -19,14 +19,28 @@
         <div class="address_content">
           <p class="address_title">全国办公地</p>
           <div class="address_item">
-            <div class="item" v-for="(item,index) in address" :key="index">
-              <div class="item_img">
-                <img :src="item.url" alt />
+            <div class="address_item_left">
+              <div class="item" v-for="(item,index) in address" :key="index">
+                <div class="item_img">
+                  <img :src="item.url" alt />
+                </div>
+                <div class="item_word">
+                  <p>{{item.title}}</p>
+                  <p>{{item.t}}</p>
+                  <p>{{item.f}}</p>
+                </div>
               </div>
-              <div class="item_word">
-                <p>{{item.title}}</p>
-                <p>{{item.t}}</p>
-                <p>{{item.f}}</p>
+            </div>
+            <div class="address_item_right">
+              <div class="item" v-for="(item,index) in address2" :key="index">
+                <div class="item_img">
+                  <img :src="item.url" alt />
+                </div>
+                <div class="item_word">
+                  <p>{{item.title}}</p>
+                  <p>{{item.t}}</p>
+                  <p>{{item.f}}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -42,27 +56,35 @@ export default {
       address: [
         {
           url: require("../../assets/imgs/contactus/contactus5.png"),
-          title: "上海市长宁区通协路288弄旭辉虹桥国际8号楼",
-          t: "T：021-32793333",
-          f: "F：021-32527558"
+          title: "沈阳总部：",
+          t: "沈阳市沈河区十一纬路169号富中大厦六楼",
+          f: "TEL：22874455"
         },
         {
+          url: require("../../assets/imgs/contactus/contactus6.png"),
+          title: "上海分公司：",
+          t: "上海市静安区南京西路1038号梅龙镇广场1704室",
+          f: "TEL：021-52181103"
+        }
+      ],
+      address2: [
+        {
           url: require("../../assets/imgs/contactus/contactus1.png"),
-          title: "北京朝阳区朝外大街三丰北里7号悠唐国际写字楼B17层",
-          t: "T：010-65683610",
-          f: "F：010-65681811"
+          title: "北京分公司：",
+          t: "北京市朝阳区广渠路3号竞园商五 ",
+          f: "TEL：010-61655810"
         },
         {
           url: require("../../assets/imgs/contactus/contactus3.png"),
-          title: "广州市天河区金穗路62号侨鑫国际23A层01号",
-          t: "T：021-32793333",
-          f: "F：021-32527558"
+          title: "长春办事处：",
+          // t: "地址：",
+          f: "长春宽城区凯旋路466号万达华宅2号楼一单元1102 "
         },
         {
           url: require("../../assets/imgs/contactus/contactus4.png"),
-          title: "杭州市虎玉路41号八卦田公园正大门",
-          t: "T：0571-81590666",
-          f: "F：0571-87926089"
+          title: "大连办事处：",
+          // t: "地址：",
+          f: "大连市中山区香榭丽广场C座1711室"
         }
       ],
       bgimg: ""
@@ -198,7 +220,29 @@ export default {
   width: 1200px;
   height: 350px;
   display: flex;
+  align-items: center;
+  padding: 0px 28px;
+  box-sizing: border-box;
+}
+.address_item_left {
+  width: 50%;
+  height: 220px;
+  border-right: 1px solid #e1e1e1;
+  display: flex;
   flex-wrap: wrap;
+  align-content: space-between;
+}
+.address_item_right {
+  width: 50%;
+  height: 220px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: right;
+}
+.address_item_right .item{
+  padding-left: 100px;
+  box-sizing: border-box;
 }
 .item {
   width: 600px;
@@ -210,34 +254,19 @@ export default {
   width: 90px;
   height: 74px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   margin-right: 33px;
 }
 .item_word {
   width: 475px;
-  height: 74px;
+  /* height: 74px; */
   font-family: MicrosoftYaHei;
   font-size: 16px;
   font-weight: normal;
   font-stretch: normal;
-  line-height: 27px;
+  line-height: 26px;
   letter-spacing: 0px;
   color: #222222;
-  border-right: 1px solid #999999;
-}
-.item:nth-child(2) {
-  justify-content: flex-end;
-}
-.item:nth-child(2) .item_word {
-  width: 392px;
-  border: 0;
-}
-.item:nth-child(4) {
-  justify-content: flex-end;
-}
-.item:nth-child(4) .item_word {
-  width: 392px;
-  border: 0;
 }
 </style>
