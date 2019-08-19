@@ -10,18 +10,24 @@
     <Fourimg class="fourimg"></Fourimg>
     <!-- 我们的业务 -->
     <div class="content">
-      <p class="titlebg">OUR SERVICE</p>
-      <p class="title">我们的业务</p>
+      <div class="titlediv">
+        <p class="titlebg">我们的业务</p>
+        <p class="title">OUR SERVICE</p>
+      </div>
       <div class="img1">
         <img src="../../assets/imgs/business/business1.jpg" alt />
       </div>
       <div class="img2">
+        <div class="img2_content">
+          <p class="img2_title">强势媒体资源</p>
+          <p class="img2_p">确保整合传播效果</p>
+        </div>
         <div class="img2_top">
           <img src="../../assets/imgs/business/business2.jpg" alt />
         </div>
-        <div class="img2_bottom">
+        <!-- <div class="img2_bottom">
           <img src="../../assets/imgs/business/business3.jpg" alt />
-        </div>
+        </div>-->
       </div>
     </div>
     <!-- 合作方 -->
@@ -121,18 +127,29 @@ export default {
         isfour = false;
       }
       var isup = true;
-      let andtitle = document.getElementsByClassName("andtitle")[0].offsetTop;
+      let titlediv = document.getElementsByClassName("titlediv")[0].offsetTop;
       console.log(tabBar);
       console.log(t);
       console.log(h);
-      let isandlistshow = andtitle - t - h;
+      let isandlistshow = titlediv - t - h;
       console.log(isandlistshow);
       if (isandlistshow < -100 && isup) {
-        $(".andtitle")
+        $(".titlediv")
           .css("margin-top", "0")
           .css("opacity", "1");
         // alert("ok");
         isup = false;
+      }
+      //判断元素到达当前窗口的什么位置（合作伙伴）
+      let isand = true;
+      let andtitle = document.getElementsByClassName("andtitle")[0].offsetTop;
+      let and = andtitle - t - h;
+      console.log(and);
+      if (and < -100 && isand) {
+        $(".andtitle")
+          .css("margin-top", "0")
+          .css("opacity", "1");
+        isand = false;
       }
     }
   },
@@ -164,21 +181,13 @@ export default {
   padding: 1px;
   box-sizing: border-box;
 }
-.titlebg {
-  width: 243px;
-  height: 40px;
-  font-family: Impact;
-  font-size: 48px;
-  font-weight: normal;
-  font-stretch: normal;
-  line-height: 40px;
-  letter-spacing: 0px;
-  color: #b81b22;
-  opacity: 0.2;
-  margin: 80px auto 0 auto;
+.titlediv {
+  margin-top: 100px;
+  margin-bottom: 3vw;
+  opacity: 0;
+  transition: margin 0.8s, opacity 1s;
 }
-.title {
-  width: 120px;
+.titlebg {
   height: 24px;
   font-family: MicrosoftYaHei-Bold;
   font-size: 24px;
@@ -187,26 +196,67 @@ export default {
   line-height: 24px;
   letter-spacing: 0px;
   color: #000000;
-  margin: -12px auto 50px auto;
+  margin: 0px auto;
+  text-align: center;
+}
+.title {
+  height: 11px;
+  font-family: ArialMT;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  line-height: 11px;
+  letter-spacing: 0px;
+  color: #999999;
+  margin: 10px auto 0 auto;
+  text-align: center;
 }
 .img1 {
   width: 91.15vw;
   min-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto 20px auto;
 }
 .img1 img {
   width: 100%;
   height: 100%;
 }
 .img2 {
-  width: 100%;
+  width: 91.15vw;
+  min-width: 1200px;
+  background-color: #f8f8f8;
+  padding: 1px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+.img2_content {
+  text-align: center;
+  margin: 65px auto 92px auto;
+}
+.img2_title {
+  font-family: MicrosoftYaHei-Bold;
+  font-size: 30px;
+  font-weight: bold;
+  font-stretch: normal;
+  line-height: 24.003px;
+  letter-spacing: 0px;
+  color: #000000;
+  text-align: center;
+}
+.img2_p {
+  font-family: MicrosoftYaHei;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 40px;
+  letter-spacing: 0px;
+  color: #000000;
+  text-align: center;
 }
 .img2_top {
   width: 91.15vw;
   min-width: 1200px;
   text-align: center;
   background-color: #f8f8f8;
-  margin: 24px auto;
+  margin: 80px auto;
 }
 .img2_top img {
   width: 1175px;

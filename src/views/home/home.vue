@@ -32,12 +32,14 @@
             :key="caseindex"
             @click="details(caseitem.id)"
           >
-            <div class="img">
-              <img :src="caseitem.cover_image" alt />
-            </div>
+            <div class="imgitemcontent">
+              <div class="img">
+                <img :src="caseitem.cover_image" alt />
+              </div>
 
-            <p class="imgitemtitle">{{caseitem.title}}</p>
-            <p class="text">{{caseitem.description}}</p>
+              <p class="imgitemtitle">{{caseitem.title}}</p>
+              <p class="text">{{caseitem.classification}}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -189,7 +191,7 @@ export default {
   width: 100%;
   /* height: 1300px; */
   /* height: 69vw; */
-  min-height: 960px;
+  /* min-height: 960px; */
   padding: 1px;
   box-sizing: border-box;
 }
@@ -234,24 +236,33 @@ export default {
   text-align: center;
 }
 .imgcontent {
-  width: 92vw;
-  max-width: 1750px;
-  min-width: 1200px;
+  /* width: 92vw; */
+  /* max-width: 1750px; */
+  /* min-width: 1200px; */
   margin: 50px auto 0 auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 .imgitem {
-  width: 29vw;
+  width: 33.3%;
   min-width: 355px;
   height: 28vw;
   min-height: 345px;
   background-color: #ffffff;
   box-sizing: border-box;
   margin-bottom: 50px;
+  overflow: hidden;
+  /* flex: 33.3%; */
+  display: flex;
+  justify-content: center;
+  padding: 0px 2vw;
 }
-.imgitem:hover {
+.imgitemcontent {
+  /* width: 100%; */
+  /* background: #d8362b; */
+}
+.imgitem:hover .imgitemcontent {
   box-shadow: 0vw 0vw 1vw 0vw rgba(51, 51, 51, 0.15);
   border-bottom: 2px solid #d8362b;
   background: #d8362b;
@@ -261,9 +272,6 @@ export default {
 }
 .imgitem:hover p {
   color: #ffffff;
-}
-.imgitem:hover .text {
-  color: rgba(255, 255, 255, 0.7);
 }
 .imgitem:hover img {
   transition: all 0.5s;
@@ -276,7 +284,7 @@ export default {
   -o-transform: scale(1.1);
 }
 .img {
-  width: 29vw;
+  width: 100%;
   min-width: 355px;
   height: 22vw;
   min-height: 269px;
@@ -287,16 +295,16 @@ export default {
   height: 100%;
 }
 .imgitem .imgitemtitle {
-  width: 95%;
+  /* width: 100%; */
   height: 21px;
   font-family: MicrosoftYaHei;
-  font-size: 1.2vw;
+  font-size: 1vw;
   font-weight: normal;
   font-stretch: normal;
   line-height: 21px;
   letter-spacing: 0px;
   color: #222222;
-  margin: 1.2vw 0 0 1vw;
+  padding: 1.2vw 1vw 0 1vw;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -306,12 +314,17 @@ export default {
 .imgitem .text {
   height: 15px;
   font-family: MicrosoftYaHei;
-  font-size: 0.8vw;
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   line-height: 15px;
   letter-spacing: 0px;
   color: #999999;
-  margin: 0.5vw 0 0 1vw;
+  padding: 0.5vw 1vw 0 1vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 </style>

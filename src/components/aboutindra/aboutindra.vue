@@ -67,6 +67,7 @@ export default {
   min-width: 100%;
   min-height: 860px;
   background: url("../../assets/imgs/home/indrabg.jpg") no-repeat;
+  background-size: 100% ;
   background-position-x: center;
   padding: 1px;
   box-sizing: border-box;

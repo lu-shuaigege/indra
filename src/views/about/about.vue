@@ -10,8 +10,10 @@
     <Aboutindra></Aboutindra>
     <!-- 专业团队 -->
     <div class="major">
-      <p class="titlebg">PROFESIONAL TEAM</p>
-      <p class="tiele">专业团队</p>
+      <div class="titlediv">
+        <p class="titlebg">专业团队</p>
+        <p class="title">PROFESIONAL TEAM</p>
+      </div>
       <div class="majortop">
         <div class="majortop_left">
           <img class="leftpeople" src="../../assets/imgs/about/people4.png" alt />
@@ -121,8 +123,10 @@
     </div>
     <!-- 公司发展 -->
     <div class="major">
-      <p class="titlebg">THE DEVELOPMENT</p>
-      <p class="tiele">公司发展</p>
+      <div class="titlediv">
+        <p class="titlebg">公司发展</p>
+        <p class="title">THE DEVELOPMENT</p>
+      </div>
       <div class="bigimg">
         <div>
           <img :src="imgs" alt />
@@ -245,21 +249,12 @@ export default {
   width: 100%;
   padding-top: 100px;
 }
-.titlebg {
-  width: 360px;
-  height: 40px;
-  font-family: Impact;
-  font-size: 48px;
-  font-weight: normal;
-  font-stretch: normal;
-  line-height: 40px;
-  letter-spacing: 0px;
-  color: #b81b22;
-  opacity: 0.2;
-  margin: 0 auto;
+.titlediv {
+  margin-top: 100px;
+  opacity: 0;
+  transition: margin 0.8s, opacity 1s;
 }
-.tiele {
-  width: 98px;
+.titlebg {
   height: 24px;
   font-family: MicrosoftYaHei-Bold;
   font-size: 24px;
@@ -267,8 +262,21 @@ export default {
   font-stretch: normal;
   line-height: 24px;
   letter-spacing: 0px;
-  color: #222222;
-  margin: -12px auto 0 auto;
+  color: #000000;
+  margin: 0px auto;
+  text-align: center;
+}
+.title {
+  height: 11px;
+  font-family: ArialMT;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  line-height: 11px;
+  letter-spacing: 0px;
+  color: #999999;
+  margin: 10px auto 0 auto;
+  text-align: center;
 }
 .majortop {
   width: 91.15vw;
