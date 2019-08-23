@@ -2,7 +2,9 @@
   <!-- 导航 -->
   <div class="nav" @mouseover="mouseOut()">
     <div class="navimg_left">
-      <img src="@/assets/imgs/home/navlogo.png" alt />
+      <router-link to="/">
+        <img @click="clickdown(0)" src="@/assets/imgs/home/navlogo.png" alt />
+      </router-link>
     </div>
     <div class="navcontent">
       <div class="navcontent_right" @mouseover="mouseOut()">
