@@ -47,7 +47,7 @@ export default {
         // $(".wordcontent").offset().top -
         //   $(window).scrollTop() -
         //   $(window).height();
-        console.log(about);
+        // console.log(about);
         if (about < -100 && isok) {
           $(".wordcontent")
             .css("margin-top", "0")
